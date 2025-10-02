@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="es">
+	<head>
+		<meta charset="UTF-8" />
+		<title>Data Attributes</title>
+		<style>
+			.productos {
+				display: grid;
+				grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+				gap: 20px;
+				padding: 20px;
+			}
+
+			.producto {
+				padding: 20px;
+				border: 2px solid #ddd;
+				border-radius: 8px;
+				text-align: center;
+				position: relative;
+			}
+
+			/* Estilos según categoría */
+			.producto[data-categoria="electronica"] {
+				border-color: #3498db;
+				background-color: #ecf0f1;
+			}
+
+			.producto[data-categoria="ropa"] {
+				border-color: #e74c3c;
+				background-color: #fadbd8;
+			}
+
+			.producto[data-categoria="hogar"] {
+				border-color: #2ecc71;
+				background-color: #d5f4e6;
+			}
+
+			/* Mostrar disponibilidad */
+			.producto[data-disponible="false"] {
+				opacity: 0.5;
+				position: relative;
+			}
+
+			.producto[data-disponible="false"]::after {
+				content: "AGOTADO";
+				position: absolute;
+				top: 50%;
+				left: 50%;
+				transform: translate(-50%, -50%);
+				background-color: red;
+				color: white;
+				padding: 5px 15px;
+				border-radius: 5px;
+				font-weight: bold;
+			}
+
+			/* Mostrar categoría */
+			.producto::before {
+				content: attr(data-categoria);
+				display: block;
+				font-size: 0.8em;
+				color: gray;
+				text-transform: uppercase;
+				margin-bottom: 10px;
+			}
+
+			.precio::after {
+				content: " - Precio: $" attr(data-precio);
+				color: green;
+				font-weight: bold;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="productos">
+			<div class="producto" data-categoria="electronica" data-precio="299" data-disponible="true">
+				<h3>Laptop</h3>
+				<p class="precio" data-precio="299">Ver detalles</p>
+			</div>
+
+			<div class="producto" data-categoria="ropa" data-precio="49" data-disponible="true">
+				<h3>Camisa</h3>
+				<p class="precio" data-precio="49">Ver detalles</p>
+			</div>
+
+			<div class="producto" data-categoria="hogar" data-precio="150" data-disponible="false">
+				<h3>Mesa</h3>
+				<p class="precio" data-precio="150">Ver detalles</p>
+			</div>
+
+			<div class="producto" data-categoria="electronica" data-precio="89" data-disponible="true">
+				<h3>Audífonos</h3>
+				<p class="precio" data-precio="89">Ver detalles</p>
+			</div>
+		</div>
+	</body>
+</html>
