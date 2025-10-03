@@ -1,0 +1,461 @@
+/* ===================================================
+   🎯 DASHBOARD DE ESTADÍSTICAS - SEMANA 2
+   📚 Conceptos: Box Model, Unidades CSS, Funciones CSS
+   🗓️ 2025 - CSS Moderno
+   =================================================== */
+
+/* ===================================================
+   🔧 RESET Y CONFIGURACIÓN BASE
+   =================================================== */
+
+/* Reset Universal - SIEMPRE usar border-box */
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
+/* Variables CSS Custom Properties */
+:root {
+	/* 🎨 Colores principales */
+	--color-primary: #2c3e50;
+	--color-secondary: #3498db;
+	--color-accent: #e74c3c;
+	--color-success: #2ecc71;
+	--color-warning: #f39c12;
+	--color-info: #9b59b6;
+
+	/* 🔘 Grises y neutros */
+	--color-white: #ffffff;
+	--color-light: #ecf0f1;
+	--color-gray-100: #f8f9fa;
+	--color-gray-200: #e9ecef;
+	--color-gray-300: #dee2e6;
+	--color-gray-400: #ced4da;
+	--color-gray-500: #adb5bd;
+	--color-gray-600: #6c757d;
+	--color-gray-700: #495057;
+	--color-gray-800: #343a40;
+	--color-gray-900: #212529;
+
+	/* 📏 Spacing usando rem (escalable) */
+	--spacing-xs: 0.25rem; /* 4px */
+	--spacing-sm: 0.5rem; /* 8px */
+	--spacing-md: 1rem; /* 16px */
+	--spacing-lg: 1.5rem; /* 24px */
+	--spacing-xl: 2rem; /* 32px */
+	--spacing-2xl: 3rem; /* 48px */
+	--spacing-3xl: 4rem; /* 64px */
+
+	/* 🔤 Tipografía fluida con clamp() */
+	--font-size-xs: clamp(0.75rem, 1vw, 0.875rem);
+	--font-size-sm: clamp(0.875rem, 1.5vw, 1rem);
+	--font-size-base: clamp(1rem, 2vw, 1.125rem);
+	--font-size-lg: clamp(1.125rem, 2.5vw, 1.25rem);
+	--font-size-xl: clamp(1.25rem, 3vw, 1.5rem);
+	--font-size-2xl: clamp(1.5rem, 4vw, 2rem);
+	--font-size-3xl: clamp(2rem, 5vw, 3rem);
+
+	/* 🏠 Anchos de contenedor */
+	--container-xs: 20rem; /* 320px */
+	--container-sm: 36rem; /* 576px */
+	--container-md: 48rem; /* 768px */
+	--container-lg: 64rem; /* 1024px */
+	--container-xl: 80rem; /* 1280px */
+	--container-2xl: 96rem; /* 1536px */
+
+	/* 🎭 Sombras para profundidad */
+	--shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.05);
+	--shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0, 0, 0, 0.06);
+	--shadow-md: 0 4px 6px rgba(0, 0, 0, 0.07), 0 2px 4px rgba(0, 0, 0, 0.06);
+	--shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1), 0 4px 6px rgba(0, 0, 0, 0.05);
+	--shadow-xl: 0 20px 25px rgba(0, 0, 0, 0.1), 0 10px 10px rgba(0, 0, 0, 0.04);
+
+	/* 🔘 Border radius */
+	--radius-sm: 0.25rem; /* 4px */
+	--radius-md: 0.5rem; /* 8px */
+	--radius-lg: 0.75rem; /* 12px */
+	--radius-xl: 1rem; /* 16px */
+	--radius-full: 50%;
+
+	/* ⏱️ Transiciones */
+	--transition-fast: 0.15s ease-in-out;
+	--transition-normal: 0.3s ease-in-out;
+	--transition-slow: 0.5s ease-in-out;
+}
+
+/* Configuración base del documento */
+html {
+	font-size: 16px; /* Base para cálculos rem */
+	scroll-behavior: smooth;
+}
+body {
+	font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans",
+		"Helvetica Neue", sans-serif;
+	font-size: var(--font-size-base);
+	line-height: 1.6;
+	color: var(--color-gray-800);
+	background-color: var(--color-gray-100);
+	/* Usando min-height para fill viewport */
+	min-height: 100vh;
+	display: flex;
+	flex-direction: column;
+}
+
+/* ===================================================
+   🏗️ LAYOUT PRINCIPAL
+   =================================================== */
+
+/* Header del Dashboard */
+.dashboard-header {
+	background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+	color: var(--color-white);
+	/* Padding usando variables responsive */
+	padding: clamp(1.5rem, 4vw, 3rem) var(--spacing-lg);
+	text-align: center;
+	box-shadow: var(--shadow-lg);
+}
+
+.header-content {
+	max-width: var(--container-lg);
+	margin-inline: auto;
+}
+
+.dashboard-title {
+	font-size: var(--font-size-3xl);
+	font-weight: 700;
+	margin-bottom: var(--spacing-sm);
+	text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.dashboard-subtitle {
+	font-size: var(--font-size-lg);
+	opacity: 0.85;
+	font-weight: 300;
+}
+
+/* Main content area */
+.dashboard-main {
+	flex: 1; /* Toma todo el espacio disponible */
+	/* Padding responsive usando calc() */
+	padding: calc(var(--spacing-xl) + 1rem) var(--spacing-md);
+}
+
+.dashboard-container {
+	max-width: var(--container-2xl);
+	margin-inline: auto;
+}
+
+/* ===================================================
+   📊 SECCIONES DE ESTADÍSTICAS
+   =================================================== */
+
+.stats-section .metrics-section {
+	margin-bottom: clamp(2rem, 5vw, 4rem);
+}
+
+.section-title {
+	font-size: var(--font-size-2xl);
+	color: var(--color-primary);
+	margin-bottom: var(--spacing-xl);
+	text-align: center;
+	font-weight: 600;
+	/* Línea decorativa con ::after */
+	position: relative;
+}
+
+.section-title::after {
+	content: "";
+	position: absolute;
+	bottom: calc(-1 * var(--spacing-sm));
+	left: 50%;
+	transform: translateX(-50%);
+	width: clamp(3rem, 10%, 6rem);
+	height: 3px;
+	background: linear-gradient(90deg, var(--color-secondary), var(--color-accent));
+	border-radius: var(--radius-full);
+}
+
+/* ===================================================
+   🃏 GRIDS DE TARJETAS (CSS Grid + Auto-fit)
+   =================================================== */
+
+.stasts-grid,
+.metrics-grid {
+	display: grid;
+	/* Grid responsive con minmax() y auto-fit */
+	grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
+	gap: clamp(1rem, 3vw, 2rem);
+	/* Margin usando logical properties */
+	margin-block: var(--spacing-xl);
+}
+
+/* ===================================================
+   🏷️ TARJETAS DE ESTADÍSTICAS
+   =================================================== */
+.stat-card,
+.metric-card {
+	background-color: var(--color-white);
+	border: 1px solid var(--color-gray-200);
+	border-radius: var(--radius-lg);
+
+	padding: var(--spacing-lg);
+	box-shadow: var(--shadow-sm);
+	transition: all var(--transition-normal);
+	will-change: transform;
+}
+
+/* Estados de hover para interactividad */
+.stat-card:hover,
+.metric-card:hover {
+	transform: translateY(-4px);
+	box-shadow: var(--shadow-xl);
+	border-color: var(--color-secondary);
+}
+
+/* ===================================================
+   📋 ESTRUCTURA INTERNA DE TARJETAS
+   =================================================== */
+.card-header {
+	display: flex;
+	align-items: center;
+	gap: var(--spacing-sm);
+	margin-bottom: var(--spacing-md);
+}
+
+.card-icon {
+	font-size: 1.5rem;
+	width: 2em;
+	height: 2em;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background-color: var(--color-gray-100);
+	border-radius: var(--radius-md);
+	transition: background-color var(--transition-fast);
+}
+
+.card-category {
+	font-size: var(--font-size-sm);
+	font-weight: 600;
+	color: var(--color-gray-600);
+	text-transform: uppercase;
+	letter-spacing: 0.05em;
+}
+
+.card-body {
+	/* Padding usando diferentes unidades */
+	padding-top: calc(var(--spacing-sm) + 2px); /* calc() para cálculo preciso */
+}
+
+/* ===================================================
+   🔢 NÚMEROS Y ESTADÍSTICAS
+   =================================================== */
+.stat-number,
+.metric-number {
+	/* Font size grande y responsive */
+	font-size: clamp(1.75rem, 4vw, 2.5rem);
+	font-weight: 700;
+	color: var(--color-primary);
+	line-height: 1.1;
+	margin-bottom: var(--spacing-xs);
+}
+
+.stat-change {
+	display: flex;
+	align-items: center;
+	gap: var(--spacing-xs);
+	font-size: var(--font-size-sm);
+	font-weight: 500;
+}
+
+.stat-change.positive {
+	color: var(--color-success);
+}
+
+.stat-change.negative {
+	color: var(--color-accent);
+}
+
+.change-indicator {
+	font-size: 1.2em;
+	font-weight: bold;
+}
+
+.change-value {
+	font-weight: 600;
+}
+
+/* ===================================================
+   📄 MÉTRICAS SECUNDARIAS
+   =================================================== */
+
+.metric-description {
+	font-size: var(--font-size-xs);
+	color: var(--color-gray-500);
+	margin-top: var(--spacing-xs);
+	font-weight: 500;
+}
+
+/* ===================================================
+   🎨 ESTILOS POR PRIORIDAD (Data Attributes)
+   =================================================== */
+
+/* Tarjetas de alta prioridad */
+[data-priority="high"] {
+	border-left: 4px solid var(--color-accent);
+}
+
+[data-priority="high"] .card-icon {
+	background: rgba(231, 76, 60, 0.1);
+	color: var(--color-accent);
+}
+
+/* Tarjetas de prioridad media */
+[data-priority="medium"] {
+	border-left: 4px solid var(--color-warning);
+}
+
+[data-priority="medium"] .card-icon {
+	background: rgba(243, 156, 18, 0.1);
+	color: var(--color-warning);
+}
+
+/* Tarjetas de baja prioridad */
+[data-priority="low"] {
+	border-left: 4px solid var(--color-info);
+}
+
+[data-priority="low"] .card-icon {
+	background: rgba(155, 89, 182, 0.1);
+	color: var(--color-info);
+}
+
+/* ===================================================
+   🦶 FOOTER
+   =================================================== */
+.dashboard-footer {
+	background: var(--color-primary);
+	color: var(--color-white);
+	text-align: center;
+	/* Padding usando min() para limitar en pantallas grandes */
+	padding: min(3vw, var(--spacing-xl)) var(--spacing-md);
+	margin-top: auto; /* Push footer to bottom */
+}
+
+.footer-content p {
+	font-size: var(--font-size-base);
+	margin-bottom: var(--spacing-sm);
+}
+
+.footer-content small {
+	font-size: var(--font-size-xs);
+	opacity: 0.8;
+}
+
+.highlight {
+	color: var(--color-secondary);
+	font-weight: 600;
+}
+
+/* ===================================================
+   📱 RESPONSIVE DESIGN (Media Queries como apoyo)
+   =================================================== */
+
+/* Tablets y pantallas medianas */
+@media (max-width: 768px) {
+	.dashboard-title {
+		font-size: clamp(1.5rem, 6vw, 2rem);
+	}
+
+	.stats-grid,
+	.metrics-grid {
+		/* En móviles, una columna */
+		grid-template-columns: 1fr;
+		gap: var(--spacing-md);
+	}
+
+	.card-header {
+		flex-direction: column;
+		text-align: center;
+		gap: var(--spacing-xs);
+	}
+}
+
+/* Móviles pequeños */
+@media (max-width: 480px) {
+	.dashboard-main {
+		padding: var(--spacing-lg) var(--spacing-sm);
+	}
+
+	.stat-card,
+	.metric-card {
+		padding: var(--spacing-md);
+	}
+
+	.stat-number,
+	.metric-number {
+		font-size: clamp(1.25rem, 8vw, 1.75rem);
+	}
+}
+
+/* Pantallas grandes */
+@media (min-width: 1200px) {
+	.stats-grid {
+		/* En pantallas grandes, máximo 4 columnas */
+		grid-template-columns: repeat(4, 1fr);
+	}
+
+	.metrics-grid {
+		/* En pantallas grandes, máximo 4 columnas */
+		grid-template-columns: repeat(4, 1fr);
+	}
+}
+
+/* ===================================================
+   ✅ UTILIDADES FINALES
+   =================================================== */
+
+/* Focus states para accesibilidad */
+*:focus-visible {
+	outline: 3px solid var(--color-secondary);
+	outline-offset: 2px;
+	border-radius: var(--radius-sm);
+}
+
+/* Smooth animations para elementos que lo requieran */
+@media (prefers-reduced-motion: no-preference) {
+	.stat-card,
+	.metric-card {
+		transition: transform var(--transition-normal), box-shadow var(--transition-normal),
+			border-color var(--transition-normal);
+	}
+}
+
+/* Respeta preferencias de motion reducido */
+@media (prefers-reduced-motion: reduce) {
+	*,
+	*::before,
+	*::after {
+		animation-duration: 0.01ms !important;
+		animation-iteration-count: 1 !important;
+		transition-duration: 0.01ms !important;
+	}
+}
+
+/* ===================================================
+   🏁 FIN DEL STYLESHEET
+   📝 Conceptos aplicados:
+   ✅ Box Model (padding, border, margin)
+   ✅ box-sizing: border-box
+   ✅ Unidades: rem, em, %, vw, vh, vmin
+   ✅ Funciones: calc(), min(), max(), clamp()
+   ✅ CSS Grid con auto-fit y minmax()
+   ✅ CSS Variables (Custom Properties)
+   ✅ Box shadows múltiples
+   ✅ Data attributes para estilos condicionales
+   ✅ Responsive design sin frameworks
+   ✅ Accesibilidad (focus-visible, reduced-motion)
+   =================================================== */
