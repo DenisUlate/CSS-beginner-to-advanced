@@ -1,0 +1,45 @@
+/* Reseteo básico */
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+.hero {
+	/* Imagen de fondo optimizada */
+	background-image: url("https://images.unsplash.com/photo-1760533120264-0b82c7f169ea?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=2069");
+	background-size: cover; /* Cubre todo el área */
+	background-position: center; /* Centrada */
+	background-repeat: no-repeat;
+	background-attachment: fixed; /* Efecto parallax */
+
+	/* Dimensiones */
+	min-block-size: 100dvh; /* Altura completa viewport dinámico */
+
+	/* Centrar contenido */
+	display: grid;
+	place-items: center;
+
+	/* Overlay oscuro con color-mix */
+	position: relative;
+}
+
+.hero::before {
+	content: "";
+	position: absolute;
+	inset: 0;
+	background: color-mix(in oklch, black, transparent 20%);
+}
+
+.hero-content {
+	position: relative;
+	z-index: 1;
+	color: white;
+	text-align: center;
+	padding: 2rem;
+}
+
+.hero-content h1 {
+	font-size: clamp(2rem, 5vw, 4rem);
+	margin-block-end: 1rem;
+}
