@@ -1,45 +1,55 @@
-/* Reseteo básico */
 * {
 	margin: 0;
 	padding: 0;
 	box-sizing: border-box;
 }
 
-.hero {
-	/* Imagen de fondo optimizada */
-	background-image: url("https://images.unsplash.com/photo-1760533120264-0b82c7f169ea?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=2069");
-	background-size: cover; /* Cubre todo el área */
-	background-position: center; /* Centrada */
-	background-repeat: no-repeat;
-	background-attachment: fixed; /* Efecto parallax */
-
-	/* Dimensiones */
-	min-block-size: 100dvh; /* Altura completa viewport dinámico */
-
-	/* Centrar contenido */
+body {
+	min-block-size: 100dvh;
 	display: grid;
 	place-items: center;
-
-	/* Overlay oscuro con color-mix */
-	position: relative;
+	background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+	font-family: system-ui;
 }
 
-.hero::before {
-	content: "";
-	position: absolute;
-	inset: 0;
-	background: color-mix(in oklch, black, transparent 20%);
+.card {
+	inline-size: min(90vw, 400px);
+	background-image: linear-gradient(
+		to bottom,
+		oklch(70% 0.2 250 / 1),
+		/* Opaco arriba */ oklch(70% 0.2 250 / 0) /* Transparente abajo */
+	);
+	border-radius: 1rem;
+	overflow: hidden;
+	box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
 }
 
-.hero-content {
-	position: relative;
-	z-index: 1;
-	color: white;
-	text-align: center;
+.card-header {
+	/* Gradiente cónico de fondo */
+	background-image: conic-gradient(
+		from 45deg,
+		oklch(70% 0.25 350),
+		oklch(60% 0.2 280),
+		oklch(65% 0.22 200),
+		oklch(70% 0.25 350)
+	);
 	padding: 2rem;
+	text-align: center;
 }
 
-.hero-content h1 {
-	font-size: clamp(2rem, 5vw, 4rem);
-	margin-block-end: 1rem;
+.gradient-text {
+	/* Texto con gradiente lineal */
+	background-image: linear-gradient(90deg, white, rgba(255, 255, 255, 0.8));
+	background-clip: text;
+	-webkit-background-clip: text;
+	color: transparent;
+	font-size: clamp(1.5rem, 4vw, 2.5rem);
+}
+
+.card-body {
+	padding: 2rem;
+	/* Gradiente radial sutil */
+	background-image: radial-gradient(circle at top right, rgba(102, 126, 234, 0.1), transparent);
+
+	backdrop-filter: blur(10px) brightness(1.1) saturate(1.2);
 }

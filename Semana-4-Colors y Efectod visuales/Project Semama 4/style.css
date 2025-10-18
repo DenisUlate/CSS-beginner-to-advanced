@@ -1,0 +1,94 @@
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+body {
+	font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+	min-height: 100vh;
+	display: grid;
+	place-items: center;
+	line-height: 1.6;
+	/* Fondo con gradiente vibrante */
+	background-image: linear-gradient(135deg, oklch(70% 0.25 350), oklch(60% 0.2 280), oklch(65% 0.22 200));
+	background-size: cover;
+	background-blend-mode: overlay;
+	position: relative;
+}
+
+body::before {
+	content: "";
+	position: absolute;
+	inset: 0;
+	background-image: url("https://img.freepik.com/free-vector/hand-drawn-abstract-outline-background_23-2150717257.jpg?semt=ais_hybrid&w=740&q=80"); /* Opcional */
+	opacity: 0.1;
+	z-index: 0;
+}
+
+.product-card {
+	position: relative;
+	inline-size: min(90vw, 400px);
+	padding: 2rem;
+	border-radius: 1.5rem;
+	background: color-mix(in oklch, white, transparent 80%);
+	backdrop-filter: blur(16px) saturate(180%);
+	border: 1px solid color-mix(in oklch, white, transparent 50%);
+	box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.3);
+	z-index: 1;
+}
+
+.product-image {
+	width: 100%;
+	border-radius: 1rem;
+	margin-block-end: 1rem;
+}
+
+.product-title {
+	font-size: 1.5rem;
+	margin-block-end: 0.5rem;
+	color: oklch(36.391% 0.08552 56.29);
+	text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.product-description {
+	font-size: 1rem;
+	margin-block-end: 1rem;
+	color: oklch(30% 0.05 50);
+}
+
+.product-price {
+	font-size: 1.25rem;
+	font-weight: bold;
+	color: oklch(45% 0.1 70);
+	margin-block-end: 1.5rem;
+}
+
+.product-date {
+	font-size: 0.875rem;
+	color: oklch(25% 0.03 40);
+}
+
+.product-button-container {
+	display: flex;
+	justify-content: space-between;
+	text-align: center;
+}
+
+.buy-button {
+	display: inline-block;
+	padding: 0.75rem 1.5rem;
+	font-size: 1rem;
+	color: white;
+	background-color: oklch(55% 0.2 320);
+	border: none;
+	border-radius: 0.75rem;
+	cursor: pointer;
+	transition: background-color 0.3s ease, transform 0.2s ease;
+	text-decoration: none;
+	text-align: center;
+}
+.buy-button:hover {
+	background-color: oklch(65% 0.25 320);
+	transform: translateY(-3px);
+}

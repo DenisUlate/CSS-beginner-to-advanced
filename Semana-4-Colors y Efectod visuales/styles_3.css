@@ -1,0 +1,70 @@
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+.background {
+	min-block-size: 100dvh;
+	display: grid;
+	place-items: center;
+
+	/* Fondo con gradiente vibrante */
+	background-image: linear-gradient(135deg, oklch(70% 0.25 350), oklch(60% 0.2 280), oklch(65% 0.22 200));
+
+	/* Patrón de fondo adicional */
+	position: relative;
+}
+
+.background::before {
+	content: "";
+	position: absolute;
+	inset: 0;
+	background-image: url("https://img.freepik.com/free-vector/hand-drawn-abstract-outline-background_23-2150717257.jpg?semt=ais_hybrid&w=740&q=80"); /* Opcional */
+	opacity: 0.1;
+}
+
+.glass-card {
+	position: relative;
+	inline-size: min(90vw, 400px);
+	padding: 2rem;
+	border-radius: 1.5rem;
+
+	/* Glassmorphism */
+	background: color-mix(in oklch, white, transparent 80%);
+	backdrop-filter: blur(16px) saturate(180%);
+
+	/* Borde sutil */
+	border: 1px solid color-mix(in oklch, white, transparent 50%);
+
+	/* Sombra suave */
+	box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+
+.glass-card h2 {
+	color: oklch(30% 0.05 250);
+	margin-block-end: 1rem;
+	font-size: clamp(1.5rem, 4vw, 2rem);
+}
+
+.glass-card p {
+	color: oklch(40% 0.05 250);
+	line-height: 1.6;
+}
+
+.glass-button {
+	background: color-mix(in oklch, white, transparent 70%);
+	backdrop-filter: blur(8px);
+	border: 1px solid rgba(255, 255, 255, 0.4);
+	padding: 0.75rem 1.5rem;
+	border-radius: 0.5rem;
+	cursor: pointer;
+	transition: all 0.3s ease;
+}
+
+.glass-button:hover {
+	background: color-mix(in oklch, white, transparent 50%);
+	backdrop-filter: blur(10px);
+	transform: translateY(-2px);
+	box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}

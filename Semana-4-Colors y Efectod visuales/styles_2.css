@@ -1,0 +1,59 @@
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+body {
+	font-family: system-ui;
+	padding: 2rem;
+}
+
+/* Overlay con transparencia */
+.modal-overlay {
+	position: fixed;
+	inset: 0;
+	/* Fondo oscuro semi-transparente */
+	background-color: color-mix(in oklch, black, transparent 30%);
+
+	display: grid;
+	place-items: center;
+
+	/* Oculto por default */
+	opacity: 0;
+	pointer-events: none;
+	transition: opacity 0.3s ease;
+}
+
+.modal-overlay.active {
+	opacity: 1;
+	pointer-events: all;
+}
+
+/* Modal - permanece opaco */
+.modal {
+	background: white;
+	padding: 2rem;
+	border-radius: 1rem;
+	max-inline-size: 500px;
+	box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+
+	/* El modal NO hereda la transparencia del overlay */
+	opacity: 1;
+}
+
+.open-modal,
+.close-modal {
+	padding: 0.75rem 1.5rem;
+	border: none;
+	border-radius: 0.5rem;
+	background: oklch(60% 0.2 250);
+	color: white;
+	cursor: pointer;
+	font-size: 1rem;
+}
+
+.open-modal:hover,
+.close-modal:hover {
+	background: color-mix(in oklch, oklch(60% 0.2 250), black 20%);
+}
