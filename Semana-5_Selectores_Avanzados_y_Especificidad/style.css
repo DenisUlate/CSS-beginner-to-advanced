@@ -1,0 +1,1150 @@
+/* ============================================
+   SEMANA 5: SELECTORES AVANZADOS & ESPECIFICIDAD
+   CSS Moderno 2025
+   ============================================ */
+
+/* ========== RESET BÁSICO ========== */
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
+/* ========== VARIABLES CSS ========== */
+:root {
+	/* Colores */
+	--color-primary: #3b82f6;
+	--color-primary-dark: #2563eb;
+	--color-secondary: #8b5cf6;
+	--color-success: #10b981;
+	--color-warning: #f59e0b;
+	--color-error: #ef4444;
+
+	--color-gray-50: #f9fafb;
+	--color-gray-100: #f3f4f6;
+	--color-gray-200: #e5e7eb;
+	--color-gray-300: #d1d5db;
+	--color-gray-600: #4b5563;
+	--color-gray-700: #374151;
+	--color-gray-900: #111827;
+
+	/* Tipografía */
+	--font-sans: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+	--font-mono: "Consolas", "Monaco", "Courier New", monospace;
+
+	/* Espaciado */
+	--space-xs: 0.5rem;
+	--space-sm: 0.75rem;
+	--space-md: 1rem;
+	--space-lg: 1.5rem;
+	--space-xl: 2rem;
+	--space-2xl: 3rem;
+
+	/* Bordes */
+	--radius-sm: 0.25rem;
+	--radius-md: 0.5rem;
+	--radius-lg: 0.75rem;
+
+	/* Sombras */
+	--shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+	--shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
+	--shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
+	--shadow-xl: 0 20px 25px rgba(0, 0, 0, 0.15);
+}
+
+/* ========== BASE STYLES ========== */
+body {
+	font-family: var(--font-sans);
+	line-height: 1.6;
+	color: var(--color-gray-900);
+	background-color: var(--color-gray-50);
+}
+
+/* ========== HEADER ========== */
+.main-header {
+	background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+	color: white;
+	padding: var(--space-2xl) var(--space-lg);
+	text-align: center;
+	box-shadow: var(--shadow-lg);
+}
+
+.main-header h1 {
+	font-size: clamp(2rem, 5vw, 3rem);
+	margin-block-end: var(--space-sm);
+}
+
+.main-header .subtitle {
+	font-size: 1.125rem;
+	opacity: 0.9;
+}
+
+/* ========== NAVEGACIÓN ========== */
+.main-nav {
+	background-color: white;
+	box-shadow: var(--shadow-sm);
+	position: sticky;
+	top: 0;
+	z-index: 100;
+}
+
+.main-nav ul {
+	list-style: none;
+	display: flex;
+	justify-content: center;
+	flex-wrap: wrap;
+	gap: var(--space-md);
+	padding: var(--space-md);
+}
+
+.main-nav a {
+	color: var(--color-gray-700);
+	text-decoration: none;
+	padding: var(--space-sm) var(--space-md);
+	border-radius: var(--radius-md);
+	transition: all 0.3s;
+	font-weight: 500;
+}
+
+/* Estados de interacción */
+.main-nav a:hover {
+	background-color: var(--color-primary);
+	color: white;
+	transform: translateY(-2px);
+}
+
+.main-nav a:focus {
+	outline: 2px solid var(--color-primary);
+	outline-offset: 2px;
+}
+
+.main-nav a:active {
+	transform: translateY(0);
+}
+
+/* ========== CONTAINER ========== */
+.container {
+	max-inline-size: 1200px;
+	margin-inline: auto;
+	padding: var(--space-xl) var(--space-md);
+}
+
+/* ========== SECCIONES ========== */
+.demo-section {
+	margin-block-end: var(--space-2xl);
+}
+
+.demo-section > h2 {
+	font-size: 2rem;
+	color: var(--color-primary);
+	margin-block-end: var(--space-lg);
+	padding-block-end: var(--space-sm);
+	border-block-end: 3px solid var(--color-primary);
+}
+
+/* ========== CARDS ========== */
+.demo-card {
+	background-color: white;
+	padding: var(--space-xl);
+	border-radius: var(--radius-lg);
+	box-shadow: var(--shadow-md);
+	margin-block-end: var(--space-lg);
+}
+
+.demo-card h3 {
+	color: var(--color-gray-900);
+	margin-block-end: var(--space-md);
+	font-size: 1.5rem;
+}
+
+.demo-card .info {
+	margin-block-start: var(--space-md);
+	padding: var(--space-md);
+	background-color: var(--color-gray-100);
+	border-left: 4px solid var(--color-primary);
+	border-radius: var(--radius-sm);
+	font-size: 0.875rem;
+	color: var(--color-gray-700);
+}
+
+.demo-card code {
+	background-color: var(--color-gray-200);
+	padding: 0.125rem 0.375rem;
+	border-radius: var(--radius-sm);
+	font-family: var(--font-mono);
+	font-size: 0.875em;
+	color: var(--color-error);
+}
+
+/* ========================================
+   1. COMBINADORES
+   ======================================== */
+
+/* Descendant Combinator (espacio) */
+.example-box p {
+	color: var(--color-primary);
+	padding: var(--space-sm);
+	background-color: var(--color-gray-100);
+	margin-block-end: var(--space-sm);
+	border-left: 3px solid var(--color-primary);
+}
+
+/* Child Combinator (>) */
+.parent-list > li {
+	background-color: #dbeafe;
+	padding: var(--space-sm);
+	margin-block-end: var(--space-xs);
+	border-left: 4px solid var(--color-primary);
+	font-weight: 600;
+}
+
+/* Los <li> anidados no heredan estos estilos */
+.parent-list li ul {
+	margin-block-start: var(--space-sm);
+}
+
+.parent-list li ul li {
+	background-color: var(--color-gray-100);
+	border-left: 2px solid var(--color-gray-300);
+	font-weight: 400;
+}
+
+/* Adjacent Sibling Combinator (+) */
+h4 + p.intro-paragraph {
+	font-size: 1.125rem;
+	color: var(--color-secondary);
+	font-weight: 500;
+	background-color: #f3e8ff;
+	padding: var(--space-md);
+	border-left: 4px solid var(--color-secondary);
+	margin-block-end: var(--space-md);
+}
+
+/* General Sibling Combinator (~) */
+.sibling-demo .trigger ~ p {
+	background-color: #fef3c7;
+	padding: var(--space-sm);
+	margin-block-end: var(--space-xs);
+	border-left: 3px solid var(--color-warning);
+}
+
+/* ========================================
+   2. SELECTORES DE ATRIBUTO
+   ======================================== */
+
+/* Campos requeridos */
+input[required],
+textarea[required] {
+	border-left: 3px solid var(--color-error);
+}
+
+/* Inputs por tipo con iconos (usando ::before en el contenedor) */
+input[type="email"] {
+	background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="%233b82f6" viewBox="0 0 16 16"><path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1H2zm13 2.383-4.758 2.855L15 11.114v-5.73zm-.034 6.878L9.271 8.82 8 9.583 6.728 8.82l-5.694 3.44A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.739zM1 11.114l4.758-2.876L1 5.383v5.73z"/></svg>');
+	background-repeat: no-repeat;
+	background-position: right 0.75rem center;
+	background-size: 1rem;
+	padding-inline-end: 2.5rem;
+}
+
+input[type="password"] {
+	background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="%236b7280" viewBox="0 0 16 16"><path d="M8 1a2 2 0 0 1 2 2v4H6V3a2 2 0 0 1 2-2zm3 6V3a3 3 0 0 0-6 0v4a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2z"/></svg>');
+	background-repeat: no-repeat;
+	background-position: right 0.75rem center;
+	background-size: 1rem;
+	padding-inline-end: 2.5rem;
+}
+
+/* Links que comienzan con https:// */
+a[href^="https://"]::after
+{
+	content: " ↗";
+	font-size: 0.75em;
+	color: var(--color-primary);
+}
+
+/* Links a YouTube */
+a[href*="youtube"] {
+	color: #ff0000;
+	font-weight: 600;
+}
+
+a[href*="youtube"]::before {
+	content: "▶ ";
+}
+
+/* Links a GitHub */
+a[href*="github"] {
+	color: #333;
+	font-weight: 600;
+}
+
+/* Links que terminan en .pdf */
+a[href$=".pdf"]::after {
+	content: " (PDF)";
+	font-size: 0.75em;
+	color: var(--color-error);
+	font-weight: 600;
+}
+
+/* Links mailto */
+a[href^="mailto:"]::before {
+	content: "✉ ";
+}
+
+/* Links con target (se abren en nueva pestaña) */
+a[target] {
+	text-decoration: underline;
+	text-decoration-style: dotted;
+}
+
+/* ========================================
+   3. FORMULARIOS
+   ======================================== */
+
+.demo-form {
+	max-inline-size: 500px;
+}
+
+.form-group {
+	margin-block-end: var(--space-md);
+}
+
+.form-group label {
+	display: block;
+	margin-block-end: var(--space-xs);
+	font-weight: 600;
+	color: var(--color-gray-700);
+}
+
+.form-group input,
+.form-group textarea {
+	width: 100%;
+	padding: var(--space-sm) var(--space-md);
+	border: 2px solid var(--color-gray-300);
+	border-radius: var(--radius-md);
+	font-size: 1rem;
+	font-family: inherit;
+	transition: all 0.3s;
+}
+
+/* Estados de focus */
+.form-group input:focus,
+.form-group textarea:focus {
+	outline: none;
+	border-color: var(--color-primary);
+	box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+/* Inputs válidos */
+.form-group input:valid {
+	border-color: var(--color-success);
+}
+
+/* Inputs inválidos (cuando están tocados) */
+.form-group input:invalid:not(:placeholder-shown) {
+	border-color: var(--color-error);
+}
+
+/* ========================================
+   4. BOTONES
+   ======================================== */
+
+.btn,
+.btn-primary,
+.btn-secondary {
+	padding: var(--space-sm) var(--space-lg);
+	border: none;
+	border-radius: var(--radius-md);
+	font-size: 1rem;
+	font-weight: 600;
+	cursor: pointer;
+	transition: all 0.3s;
+	text-decoration: none;
+	display: inline-block;
+}
+
+.btn,
+.btn-primary {
+	background-color: var(--color-primary);
+	color: white;
+}
+
+.btn:hover,
+.btn-primary:hover {
+	background-color: var(--color-primary-dark);
+	transform: translateY(-2px);
+	box-shadow: var(--shadow-lg);
+}
+
+.btn:active,
+.btn-primary:active {
+	transform: translateY(0);
+}
+
+.btn:focus,
+.btn-primary:focus {
+	outline: 2px solid var(--color-primary);
+	outline-offset: 2px;
+}
+
+.btn-secondary {
+	background-color: var(--color-secondary);
+	color: white;
+}
+
+.btn-secondary:hover {
+	background-color: #7c3aed;
+}
+
+.btn-link {
+	color: var(--color-primary);
+	text-decoration: none;
+	font-weight: 600;
+	transition: all 0.3s;
+}
+
+.btn-link:hover {
+	color: var(--color-primary-dark);
+	text-decoration: underline;
+}
+
+.button-group {
+	display: flex;
+	gap: var(--space-md);
+	flex-wrap: wrap;
+}
+
+/* ========================================
+   5. TABLAS
+   ======================================== */
+
+.demo-table {
+	width: 100%;
+	border-collapse: collapse;
+	margin-block: var(--space-md);
+}
+
+.demo-table th,
+.demo-table td {
+	padding: var(--space-md);
+	text-align: left;
+	border-block-end: 1px solid var(--color-gray-200);
+}
+
+.demo-table th {
+	background-color: var(--color-primary);
+	color: white;
+	font-weight: 600;
+}
+
+/* nth-child para filas alternas (zebra striping) */
+.demo-table tbody tr:nth-child(even) {
+	background-color: var(--color-gray-100);
+}
+
+.demo-table tbody tr:nth-child(odd) {
+	background-color: white;
+}
+
+/* Hover en filas */
+.demo-table tbody tr:hover {
+	background-color: #dbeafe;
+	cursor: pointer;
+}
+
+/* Primera columna con mayor peso */
+.demo-table td:first-child {
+	font-weight: 600;
+	color: var(--color-gray-900);
+}
+
+/* ========================================
+   6. LISTAS
+   ======================================== */
+
+.link-list {
+	list-style: none;
+}
+
+.link-list li {
+	margin-block-end: var(--space-sm);
+}
+
+.link-list a {
+	display: inline-block;
+	padding: var(--space-sm) var(--space-md);
+	text-decoration: none;
+	color: var(--color-gray-700);
+	background-color: var(--color-gray-100);
+	border-radius: var(--radius-md);
+	transition: all 0.3s;
+}
+
+.link-list a:hover {
+	background-color: var(--color-primary);
+	color: white;
+	transform: translateX(5px);
+}
+
+/* first-child y last-child */
+.status-list {
+	list-style: none;
+}
+
+.status-list li {
+	padding: var(--space-md);
+	margin-block-end: var(--space-xs);
+	background-color: var(--color-gray-100);
+	border-left: 3px solid var(--color-gray-300);
+}
+
+.status-list li:first-child {
+	background-color: #dbeafe;
+	border-left-color: var(--color-primary);
+	font-weight: 700;
+	font-size: 1.125rem;
+}
+
+.status-list li:last-child {
+	background-color: #d1fae5;
+	border-left-color: var(--color-success);
+	font-weight: 700;
+	font-size: 1.125rem;
+}
+
+/* ========================================
+   7. :not() - NEGACIÓN
+   ======================================== */
+
+.tag-list {
+	display: flex;
+	gap: var(--space-sm);
+	flex-wrap: wrap;
+}
+
+.tag {
+	padding: var(--space-xs) var(--space-md);
+	border-radius: 9999px;
+	font-size: 0.875rem;
+	font-weight: 600;
+}
+
+/* Todos los tags EXCEPTO .featured */
+.tag:not(.featured) {
+	background-color: var(--color-gray-200);
+	color: var(--color-gray-700);
+}
+
+.tag.featured {
+	background-color: var(--color-primary);
+	color: white;
+	box-shadow: var(--shadow-md);
+	transform: scale(1.1);
+}
+
+/* ========================================
+   8. :is() - SIMPLIFICACIÓN
+   ======================================== */
+
+/* Todos los h4 y h5 dentro de header, main o aside */
+:is(header, main, aside) :is(h4, h5) {
+	color: var(--color-primary);
+	margin-block-end: var(--space-sm);
+}
+
+.content-area {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+	gap: var(--space-md);
+}
+
+.content-area > * {
+	padding: var(--space-md);
+	background-color: var(--color-gray-100);
+	border-radius: var(--radius-md);
+}
+
+/* ========================================
+   9. :has() - SELECTOR PADRE
+   ======================================== */
+
+.cards-grid {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+	gap: var(--space-lg);
+	margin-block: var(--space-md);
+}
+
+.card {
+	background-color: white;
+	padding: var(--space-lg);
+	border-radius: var(--radius-lg);
+	box-shadow: var(--shadow-md);
+	transition: all 0.3s;
+}
+
+/* Card que CONTIENE imagen - cambia a grid layout */
+.card:has(img) {
+	display: grid;
+	grid-template-columns: 150px 1fr;
+	gap: var(--space-md);
+	padding: var(--space-md);
+}
+
+.card:has(img) img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	border-radius: var(--radius-md);
+}
+
+.card h4 {
+	margin-block-end: var(--space-sm);
+	color: var(--color-gray-900);
+}
+
+.card p {
+	color: var(--color-gray-600);
+	margin-block-end: var(--space-sm);
+}
+
+.card:hover {
+	box-shadow: var(--shadow-xl);
+	transform: translateY(-4px);
+}
+
+/* ========================================
+   10. :where() - ESPECIFICIDAD CERO
+   ======================================== */
+
+/* :where() tiene especificidad (0,0,0) */
+:where(.specificity-demo) .demo-where {
+	color: var(--color-gray-600);
+	font-style: italic;
+}
+
+/* Fácil de sobrescribir con una clase simple */
+.demo-where {
+	color: var(--color-success) !important; /* Solo para demostración */
+	font-weight: 600;
+	padding: var(--space-md);
+	background-color: #d1fae5;
+	border-left: 4px solid var(--color-success);
+	margin-block-end: var(--space-sm);
+}
+
+/* :is() tiene mayor especificidad */
+:is(.specificity-demo) .demo-is {
+	color: var(--color-primary);
+	font-weight: 600;
+	padding: var(--space-md);
+	background-color: #dbeafe;
+	border-left: 4px solid var(--color-primary);
+}
+
+/* ========================================
+   11. PSEUDO-ELEMENTOS
+   ======================================== */
+
+/* ::before y ::after - Comillas decorativas */
+.quote {
+	position: relative;
+	padding: var(--space-xl);
+	font-size: 1.25rem;
+	font-style: italic;
+	color: var(--color-gray-700);
+	background-color: var(--color-gray-100);
+	border-left: 4px solid var(--color-primary);
+	margin-block: var(--space-md);
+}
+
+.quote::before {
+	content: "\201C"; /* Comilla de apertura " */
+	position: absolute;
+	top: 0;
+	left: 10px;
+	font-size: 4rem;
+	color: var(--color-primary);
+	opacity: 0.3;
+	line-height: 1;
+}
+
+.quote::after {
+	content: "\201D"; /* Comilla de cierre " */
+	position: absolute;
+	bottom: -20px;
+	right: 10px;
+	font-size: 4rem;
+	color: var(--color-primary);
+	opacity: 0.3;
+	line-height: 1;
+}
+
+/* Notificaciones con iconos */
+.notification {
+	padding: var(--space-md);
+	border-radius: var(--radius-md);
+	margin-block-end: var(--space-md);
+	padding-inline-start: 3rem;
+	position: relative;
+	font-weight: 500;
+}
+
+.notification::before {
+	position: absolute;
+	left: 1rem;
+	top: 50%;
+	transform: translateY(-50%);
+	font-size: 1.25rem;
+}
+
+.notification.success {
+	background-color: #d1fae5;
+	color: #065f46;
+	border-left: 4px solid var(--color-success);
+}
+
+.notification.success::before {
+	content: "✓";
+	color: var(--color-success);
+}
+
+.notification.warning {
+	background-color: #fef3c7;
+	color: #92400e;
+	border-left: 4px solid var(--color-warning);
+}
+
+.notification.warning::before {
+	content: "⚠";
+	color: var(--color-warning);
+}
+
+.notification.error {
+	background-color: #fee2e2;
+	color: #991b1b;
+	border-left: 4px solid var(--color-error);
+}
+
+.notification.error::before {
+	content: "✕";
+	color: var(--color-error);
+}
+
+/* ::first-letter - Drop cap */
+.drop-cap::first-letter {
+	font-size: 3.5rem;
+	font-weight: 700;
+	float: left;
+	line-height: 1;
+	margin-inline-end: var(--space-sm);
+	margin-block-start: 0.1em;
+	color: var(--color-primary);
+}
+
+/* ::selection - Selección personalizada */
+.custom-selection::selection {
+	background-color: var(--color-warning);
+	color: #78350f;
+}
+
+/* ::marker - Viñetas personalizadas */
+.custom-list {
+	list-style: none;
+	padding-inline-start: var(--space-lg);
+}
+
+.custom-list li {
+	position: relative;
+	padding-inline-start: var(--space-lg);
+	margin-block-end: var(--space-sm);
+}
+
+.custom-list li::before {
+	content: "▸";
+	position: absolute;
+	left: 0;
+	color: var(--color-primary);
+	font-size: 1.25rem;
+	font-weight: 700;
+}
+
+.custom-ordered-list li::marker {
+	content: counter(list-item) ". ";
+	color: var(--color-error);
+	font-weight: 700;
+	font-size: 1.125rem;
+}
+
+/* ========================================
+   12. ESPECIFICIDAD - EJEMPLOS
+   ======================================== */
+
+.specificity-battle {
+	margin-block: var(--space-md);
+}
+
+/* (0,0,0,1) - Solo elemento */
+p {
+	color: gray;
+}
+
+/* (0,0,1,0) - Clase */
+.text-style {
+	color: blue;
+}
+
+/* (0,0,1,1) - Clase + elemento */
+p.text-style {
+	color: green;
+}
+
+/* (0,1,0,0) - ID (GANA) */
+#specific-test {
+	color: red;
+	font-size: 1.25rem;
+	font-weight: 700;
+	padding: var(--space-md);
+	background-color: #fee2e2;
+	border-left: 4px solid red;
+}
+
+.code-explanation {
+	margin-block-start: var(--space-lg);
+	padding: var(--space-md);
+	background-color: var(--color-gray-900);
+	color: white;
+	border-radius: var(--radius-md);
+}
+
+.code-explanation h4 {
+	color: var(--color-warning);
+	margin-block-end: var(--space-md);
+}
+
+.code-explanation pre {
+	background-color: #1e293b;
+	padding: var(--space-md);
+	border-radius: var(--radius-sm);
+	overflow-x: auto;
+	margin-block-end: var(--space-md);
+}
+
+.code-explanation code {
+	color: #94a3b8;
+	font-family: var(--font-mono);
+	font-size: 0.875rem;
+	line-height: 1.8;
+}
+
+.winner {
+	background-color: #fef3c7;
+	color: #78350f;
+	padding: var(--space-md);
+	border-radius: var(--radius-md);
+	margin-block-start: var(--space-md);
+}
+
+/* !important demo */
+.force-green {
+	color: green !important;
+	font-weight: 700;
+	font-size: 1.125rem;
+	padding: var(--space-md);
+	background-color: #d1fae5;
+	border-left: 4px solid var(--color-success);
+}
+
+.warning-box {
+	background-color: #fef3c7;
+	color: #92400e;
+	padding: var(--space-md);
+	border-left: 4px solid var(--color-warning);
+	border-radius: var(--radius-md);
+	margin-block-start: var(--space-md);
+	font-weight: 600;
+}
+
+/* ========================================
+   13. PROYECTO FINAL - SMART CARDS
+   ======================================== */
+
+.final-project {
+	background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+	padding: var(--space-2xl);
+	border-radius: var(--radius-lg);
+	color: white;
+}
+
+.final-project h2 {
+	color: white;
+	border-block-end-color: rgba(255, 255, 255, 0.3);
+}
+
+.project-intro {
+	font-size: 1.125rem;
+	margin-block-end: var(--space-lg);
+	opacity: 0.95;
+}
+
+.smart-cards-grid {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+	gap: var(--space-lg);
+	margin-block: var(--space-xl);
+}
+
+.smart-card {
+	background-color: white;
+	color: var(--color-gray-900);
+	padding: var(--space-lg);
+	border-radius: var(--radius-lg);
+	box-shadow: var(--shadow-lg);
+	display: flex;
+	flex-direction: column;
+	transition: all 0.3s;
+}
+
+/* Primera card destacada */
+.smart-card:first-child {
+	border: 3px solid var(--color-warning);
+	box-shadow: 0 0 0 4px rgba(245, 158, 11, 0.2), var(--shadow-lg);
+}
+
+/* Última card con estilo especial */
+.smart-card:last-child {
+	background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+	color: white;
+}
+
+.smart-card:last-child h3,
+.smart-card:last-child p {
+	color: white;
+}
+
+/* Cards alternas */
+.smart-card:nth-child(even) {
+	background-color: #f8fafc;
+}
+
+/* Card destacada */
+.smart-card.featured {
+	background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+	color: white;
+	transform: scale(1.05);
+}
+
+.smart-card.featured h3,
+.smart-card.featured p {
+	color: white;
+}
+
+/* Cards con imagen - Layout Grid automático */
+.smart-card:has(img) {
+	display: grid;
+	grid-template-columns: 1fr;
+	grid-template-rows: auto 1fr;
+	gap: 0;
+	padding: 0;
+	overflow: hidden;
+}
+
+.smart-card:has(img) img {
+	width: 100%;
+	height: 200px;
+	object-fit: cover;
+}
+
+.smart-card:has(img) .smart-card-content {
+	padding: var(--space-lg);
+}
+
+/* Hover en todas las cards */
+.smart-card:hover {
+	transform: translateY(-8px);
+	box-shadow: var(--shadow-xl);
+}
+
+.smart-card h3 {
+	font-size: 1.25rem;
+	margin-block-end: var(--space-sm);
+}
+
+.smart-card p {
+	color: var(--color-gray-600);
+	margin-block-end: var(--space-md);
+	flex-grow: 1;
+}
+
+.smart-card ul {
+	margin-block-end: var(--space-md);
+	padding-inline-start: var(--space-lg);
+	flex-grow: 1;
+}
+
+.smart-card ul li {
+	margin-block-end: var(--space-xs);
+}
+
+/* Links dentro de cards */
+.card-link {
+	color: var(--color-primary);
+	text-decoration: none;
+	font-weight: 600;
+	padding: var(--space-sm) var(--space-md);
+	border: 2px solid var(--color-primary);
+	border-radius: var(--radius-md);
+	display: inline-block;
+	transition: all 0.3s;
+	margin-block-start: auto;
+}
+
+.card-link:hover {
+	background-color: var(--color-primary);
+	color: white;
+}
+
+/* Links externos en cards */
+.smart-card a[href^="https://"]::after
+{
+	content: " ↗";
+	font-size: 0.75em;
+}
+
+/* Links a PDF en cards */
+.smart-card a[href$=".pdf"]::after {
+	content: " 📄";
+	font-size: 1em;
+}
+
+/* Links de email en cards */
+.smart-card a[href^="mailto:"]::before {
+	content: "✉ ";
+}
+
+/* Cards destacadas - override link styles */
+.smart-card.featured .card-link,
+.smart-card:last-child .card-link {
+	color: white;
+	border-color: white;
+}
+
+.smart-card.featured .card-link:hover,
+.smart-card:last-child .card-link:hover {
+	background-color: white;
+	color: var(--color-primary);
+}
+
+/* Características del proyecto */
+.project-features {
+	background-color: white;
+	color: var(--color-gray-900);
+	padding: var(--space-xl);
+	border-radius: var(--radius-lg);
+	margin-block-start: var(--space-xl);
+}
+
+.project-features h4 {
+	color: var(--color-primary);
+	margin-block-end: var(--space-md);
+	font-size: 1.5rem;
+}
+
+.project-features ul {
+	list-style: none;
+	padding: 0;
+}
+
+.project-features li {
+	padding: var(--space-sm) 0;
+	border-block-end: 1px solid var(--color-gray-200);
+}
+
+.project-features li:last-child {
+	border-block-end: none;
+}
+
+/* ========================================
+   14. FOOTER
+   ======================================== */
+
+.main-footer {
+	background-color: var(--color-gray-900);
+	color: white;
+	text-align: center;
+	padding: var(--space-xl);
+	margin-block-start: var(--space-2xl);
+}
+
+.main-footer a {
+	color: var(--color-primary);
+	text-decoration: none;
+	font-weight: 600;
+}
+
+.main-footer a:hover {
+	text-decoration: underline;
+}
+
+/* ========================================
+   15. RESPONSIVE
+   ======================================== */
+
+@media (max-width: 768px) {
+	.container {
+		padding-inline: var(--space-md);
+	}
+
+	.demo-card {
+		padding: var(--space-md);
+	}
+
+	.main-header h1 {
+		font-size: 2rem;
+	}
+
+	.cards-grid,
+	.smart-cards-grid {
+		grid-template-columns: 1fr;
+	}
+
+	.button-group {
+		flex-direction: column;
+	}
+
+	.main-nav ul {
+		flex-direction: column;
+		align-items: center;
+	}
+}
+
+/* ========================================
+   16. GLOBAL SELECTION
+   ======================================== */
+
+::selection {
+	background-color: var(--color-primary);
+	color: white;
+}
+
+/* ========================================
+   17. SMOOTH SCROLL
+   ======================================== */
+
+html {
+	scroll-behavior: smooth;
+}
+
+/* ========================================
+   18. FOCUS VISIBLE (Accesibilidad)
+   ======================================== */
+
+:focus-visible {
+	outline: 2px solid var(--color-primary);
+	outline-offset: 2px;
+}
+
+/* ========== FIN ========== */
