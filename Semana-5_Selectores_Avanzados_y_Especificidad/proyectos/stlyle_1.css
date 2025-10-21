@@ -1,0 +1,95 @@
+/* ========== RESET BÁSICO ========== */
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
+/* ========== VARIABLES CSS ========== */
+:root {
+	/* Colores */
+	--color-primary: #3b82f6;
+	--color-primary-dark: #2563eb;
+	--color-secondary: #8b5cf6;
+	--color-success: #10b981;
+	--color-warning: #f59e0b;
+	--color-error: #ef4444;
+
+	--color-gray-50: #f9fafb;
+	--color-gray-100: #f3f4f6;
+	--color-gray-200: #e5e7eb;
+	--color-gray-300: #d1d5db;
+	--color-gray-600: #4b5563;
+	--color-gray-700: #374151;
+	--color-gray-900: #111827;
+
+	/* Tipografía */
+	--font-sans: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+	--font-mono: "Consolas", "Monaco", "Courier New", monospace;
+
+	/* Espaciado */
+	--space-xs: 0.5rem;
+	--space-sm: 0.75rem;
+	--space-md: 1rem;
+	--space-lg: 1.5rem;
+	--space-xl: 2rem;
+	--space-2xl: 3rem;
+
+	/* Bordes */
+	--radius-sm: 0.25rem;
+	--radius-md: 0.5rem;
+	--radius-lg: 0.75rem;
+
+	/* Sombras */
+	--shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+	--shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
+	--shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
+	--shadow-xl: 0 20px 25px rgba(0, 0, 0, 0.15);
+}
+
+/* ========== BASE STYLES ========== */
+body {
+	font-family: var(--font-sans);
+	line-height: 1.6;
+	color: var(--color-gray-900);
+	background-color: var(--color-gray-50);
+	display: grid;
+	place-items: center;
+	min-height: 100vh;
+	padding: var(--space-lg);
+}
+
+.contenedor {
+	background-color: #fff;
+	padding: var(--space-lg);
+	border: solid 2px var(--color-gray-300);
+	border-radius: var(--radius-md);
+	box-shadow: var(--shadow-lg);
+	max-width: 600px;
+	width: 100%;
+}
+
+.contenedor > div {
+	margin-bottom: var(--space-md);
+}
+
+.contenedor > div:nth-child(odd):not(:last-child):not(:first-child) {
+	background-color: var(--color-gray-100);
+	padding: var(--space-sm);
+	border-radius: var(--radius-sm);
+}
+
+:is(.contenedor, div) :is(.item-1, .item-6) {
+	background-color: var(--color-primary);
+	padding: var(--space-sm);
+	border-radius: var(--radius-sm);
+}
+
+.contenedor a:nth-child(n) .external-links a::after {
+	color: var(--color-primary);
+	text-decoration: none;
+	font-weight: bold;
+	content: " 🔗";
+}
