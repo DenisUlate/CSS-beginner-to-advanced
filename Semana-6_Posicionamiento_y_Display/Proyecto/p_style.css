@@ -478,3 +478,461 @@ a {
 	font-weight: 600;
 	margin-top: var(--spacing-sm);
 }
+
+/* ========================================
+   CONTACT FORM
+   ======================================== */
+
+.contact-form {
+	max-width: 600px;
+	margin: 0 auto;
+}
+
+.form-row {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: var(--spacing-md);
+}
+
+.form-group {
+	margin-bottom: var(--spacing-lg);
+}
+
+.form-group label {
+	display: block;
+	margin-bottom: var(--spacing-sm);
+	font-weight: 600;
+	color: white;
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+	width: 100%;
+	padding: 0.75rem 1rem;
+	border: 1px solid rgba(255, 255, 255, 0.2);
+	background: rgba(255, 255, 255, 0.1);
+	color: white;
+	border-radius: var(--radius-md);
+	font-family: inherit;
+	transition: border-color var(--transition-fast), background-color var(--transition-fast);
+}
+
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+	color: rgba(255, 255, 255, 0.5);
+}
+
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus {
+	outline: none;
+	border-color: var(--color-primary);
+	background: rgba(255, 255, 255, 0.15);
+}
+
+/* ========================================
+   MODAL
+   position: fixed con z-index alto
+   ======================================== */
+/* Modal Overlay (Backdrop) */
+.modal-overlay {
+	/* ✅ POSITION FIXED - Cubre toda la pantalla */
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+
+	/* Z-index desde nuestra escala */
+	z-index: var(--z-modal-backdrop);
+
+	/* Overlay semi-transparente */
+	background-color: rgba(0, 0, 0, 0.7);
+	backdrop-filter: blur(4px);
+
+	/* Centrado del modal */
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: var(--spacing-xl);
+
+	/* Hidden por defecto */
+	opacity: 0;
+	visibility: hidden;
+
+	/* Animación de entrada */
+	transition: opacity var(--transition-base), visibility var(--transition-base);
+}
+
+/* Estado activo del overlay */
+.modal-overlay.active {
+	opacity: 1;
+	visibility: visible;
+}
+
+/* Modal Container */
+.modal {
+	/* Position relative para close button absolute */
+	position: relative;
+
+	/* Z-index encima del backdrop */
+	z-index: var(--z-modal);
+
+	/* Estilos */
+	background: white;
+	border-radius: var(--radius-xl);
+	box-shadow: var(--shadow-xl);
+	max-width: 600px;
+	width: 100%;
+	max-height: 90vh;
+
+	/* Scroll interno si es muy alto */
+	overflow-y: auto;
+
+	/* Animación de entrada */
+	transform: scale(0.9) translateY(20px);
+	transition: transform var(--transition-base);
+}
+
+/* Animación cuando está activo */
+.modal-overlay.active .modal {
+	transform: scale(1) translateY(0);
+}
+
+/* Modal Header */
+.modal-header {
+	/* position: relative para el close button */
+	position: relative;
+	padding: var(--spacing-xl);
+	border-bottom: 1px solid var(--color-border);
+}
+
+.modal-header h2 {
+	font-size: 1.5rem;
+	color: var(--color-text);
+	padding-right: 40px; /* Espacio para close button */
+}
+
+/* Close Button (Position Absolute) */
+.modal-close {
+	/* ✅ POSITION ABSOLUTE - Posicionado en esquina */
+	position: absolute;
+	top: var(--spacing-lg);
+	right: var(--spacing-lg);
+
+	/* Estilos */
+	background: transparent;
+	color: var(--color-text-light);
+	width: 40px;
+	height: 40px;
+	border-radius: var(--radius-md);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	transition: background-color var(--transition-fast), color var(--transition-fast);
+}
+
+.modal-close:hover {
+	background-color: var(--color-bg-alt);
+	color: var(--color-text);
+}
+
+.modal-close:active {
+	transform: scale(0.95);
+}
+
+/* Modal Body */
+.modal-body {
+	padding: var(--spacing-xl);
+}
+
+.modal-description {
+	color: var(--color-text-light);
+	margin-bottom: var(--spacing-xl);
+	line-height: 1.6;
+}
+
+/* Modal Form */
+.modal-form .form-group label {
+	color: var(--color-text);
+}
+
+.modal-form .form-group input,
+.modal-form .form-group textarea,
+.modal-form .form-group select {
+	border: 1px solid var(--color-border);
+	background: var(--color-bg);
+	color: var(--color-text);
+}
+
+.modal-form .form-group input:focus,
+.modal-form .form-group textarea:focus,
+.modal-form .form-group select:focus {
+	border-color: var(--color-primary);
+	background: white;
+}
+
+/* Modal Actions */
+.modal-actions {
+	display: flex;
+	gap: var(--spacing-md);
+	justify-content: flex-end;
+	margin-top: var(--spacing-xl);
+}
+
+/* ========================================
+   FLOATING ACTION BUTTON (FAB)
+   position: fixed para botón flotante
+   ======================================== */
+.fab {
+	/* ✅ POSITION FIXED - Siempre visible */
+	position: fixed;
+	bottom: var(--spacing-xl);
+	right: var(--spacing-xl);
+
+	/* Z-index */
+	z-index: var(--z-fixed);
+
+	/* Estilos */
+	width: 56px;
+	height: 56px;
+	border-radius: var(--radius-full);
+	background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+	color: white;
+	box-shadow: var(--shadow-lg);
+
+	/* Centrado del ícono */
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
+	/* Hidden por defecto */
+	opacity: 0;
+	visibility: hidden;
+	transform: translateY(100px);
+
+	/* Transiciones */
+	transition: opacity var(--transition-base), visibility var(--transition-base), transform var(--transition-base),
+		box-shadow var(--transition-fast);
+}
+
+/* Estado visible */
+.fab.visible {
+	opacity: 1;
+	visibility: visible;
+	transform: translateY(0);
+}
+
+.fab:hover {
+	box-shadow: var(--shadow-xl);
+	transform: translateY(-4px);
+}
+
+.fab:active {
+	transform: translateY(0);
+}
+
+/* ========================================
+   RESPONSIVE DESIGN
+   Mobile First Approach
+   ======================================== */
+
+/* Tablet y menor */
+@media (max-width: 1024px) {
+	:root {
+		--header-height: 60px;
+	}
+
+	.header-container {
+		padding: 0 var(--spacing-md);
+	}
+
+	.about-content {
+		grid-template-columns: 1fr;
+	}
+
+	.stats-grid {
+		grid-template-columns: repeat(3, 1fr);
+	}
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+	/* Header Mobile */
+	.nav {
+		/* ✅ POSITION FIXED para menu mobile */
+		position: fixed;
+		top: var(--header-height);
+		left: 0;
+		right: 0;
+
+		/* Layout vertical */
+		flex-direction: column;
+		gap: 0;
+
+		/* Estilos */
+		background: white;
+		border-bottom: 1px solid var(--color-border);
+		padding: var(--spacing-md);
+		box-shadow: var(--shadow-lg);
+
+		/* Hidden por defecto */
+		opacity: 0;
+		visibility: hidden;
+		transform: translateY(-10px);
+		transition: opacity var(--transition-base), visibility var(--transition-base), transform var(--transition-base);
+	}
+
+	.nav.active {
+		opacity: 1;
+		visibility: visible;
+		transform: translateY(0);
+	}
+
+	.nav-link {
+		width: 100%;
+		padding: var(--spacing-md);
+		border-bottom: 1px solid var(--color-border);
+	}
+
+	.nav-link:last-child {
+		border-bottom: none;
+	}
+
+	.mobile-toggle {
+		display: flex;
+	}
+
+	/* Ocultar botón CTA en mobile header */
+	.header .btn-primary {
+		display: none;
+	}
+
+	/* Hero ajustes */
+	.hero {
+		min-height: auto;
+		padding: var(--spacing-2xl) var(--spacing-md);
+	}
+
+	.hero-buttons {
+		flex-direction: column;
+		width: 100%;
+	}
+
+	.hero-buttons .btn-primary,
+	.hero-buttons .btn-secondary {
+		width: 100%;
+	}
+
+	/* Services grid */
+	.services-grid {
+		grid-template-columns: 1fr;
+	}
+
+	/* Portfolio grid */
+	.portfolio-grid {
+		grid-template-columns: 1fr;
+	}
+
+	/* Stats grid */
+	.stats-grid {
+		grid-template-columns: 1fr;
+	}
+
+	/* Contact form */
+	.form-row {
+		grid-template-columns: 1fr;
+	}
+
+	/* Modal ajustes */
+	.modal {
+		margin: var(--spacing-md);
+		max-height: calc(100vh - 2rem);
+	}
+
+	.modal-body {
+		padding: var(--spacing-md);
+	}
+
+	.modal-actions {
+		flex-direction: column;
+	}
+
+	.modal-actions button {
+		width: 100%;
+	}
+
+	/* FAB ajustes */
+	.fab {
+		bottom: var(--spacing-md);
+		right: var(--spacing-md);
+		width: 48px;
+		height: 48px;
+	}
+}
+
+/* Small mobile */
+@media (max-width: 480px) {
+	:root {
+		--spacing-xl: 1rem;
+		--spacing-2xl: 1.5rem;
+		--spacing-3xl: 2rem;
+	}
+
+	.logo-text {
+		display: none; /* Ocultar texto del logo en pantallas muy pequeñas */
+	}
+
+	.section {
+		padding: var(--spacing-2xl) var(--spacing-md);
+	}
+}
+
+/* ========================================
+   ACCESSIBILITY
+   ======================================== */
+
+/* Focus states visibles */
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+	outline: 2px solid var(--color-primary);
+	outline-offset: 2px;
+}
+
+/* Prefers reduced motion */
+@media (prefers-reduced-motion: reduce) {
+	*,
+	*::before,
+	*::after {
+		animation-duration: 0.01ms !important;
+		animation-iteration-count: 1 !important;
+		transition-duration: 0.01ms !important;
+	}
+
+	html {
+		scroll-behavior: auto;
+	}
+}
+
+/* ========================================
+   PRINT STYLES
+   ======================================== */
+@media print {
+	.header,
+	.fab,
+	.modal-overlay,
+	.btn-primary,
+	.btn-secondary {
+		display: none;
+	}
+
+	body {
+		font-size: 12pt;
+		line-height: 1.5;
+		color: black;
+	}
+}
