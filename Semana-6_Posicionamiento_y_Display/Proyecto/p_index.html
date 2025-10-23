@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Proyecto Semana 6: Header Sticky + Modal</title>
+		<link rel="stylesheet" href="p_style.css" />
+	</head>
+	<body>
+		<!-- ========================================
+       STICKY HEADER
+       ======================================== -->
+		<header class="header" id="header">
+			<div class="header-container">
+				<!-- Logo -->
+				<div class="logo">
+					<svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+						<rect width="40" height="40" rx="8" fill="url(#gradient)" />
+						<path d="M20 10L30 20L20 30L10 20L20 10Z" fill="white" />
+						<defs>
+							<linearGradient id="gradient" x1="0" y1="0" x2="40" y2="40">
+								<stop offset="0%" stop-color="#667eea" />
+								<stop offset="100%" stop-color="#764ba2" />
+							</linearGradient>
+						</defs>
+					</svg>
+					<span class="logo-text">DevStudio</span>
+				</div>
+
+				<!-- Navigation -->
+				<nav class="nav">
+					<a href="#home" class="nav-link active">Inicio</a>
+					<a href="#services" class="nav-link">Servicios</a>
+					<a href="#portfolio" class="nav-link">Portfolio</a>
+					<a href="#about" class="nav-link">Acerca</a>
+					<a href="#contact" class="nav-link">Contacto</a>
+				</nav>
+
+				<!-- CTA Button -->
+				<button class="btn-primary" id="openModal">Solicitar Demo</button>
+
+				<!-- Mobile Menu Toggle -->
+				<button class="mobile-toggle" id="mobileToggle" aria-label="Toggle menu">
+					<span></span>
+					<span></span>
+					<span></span>
+				</button>
+			</div>
+		</header>
+
+		<!-- ========================================
+       MAIN CONTENT
+       ======================================== -->
+		<main class="main-content">
+			<!-- Hero Section -->
+			<section class="hero" id="home">
+				<div class="container">
+					<h1 class="hero-title">
+						Construimos <span class="gradient-text">experiencias digitales</span> extraordinarias
+					</h1>
+					<p class="hero-description">
+						Desarrollo web moderno con las últimas tecnologías. Scroll down para ver el header sticky en acción.
+					</p>
+					<div class="hero-buttons">
+						<button class="btn-primary" id="openModalHero">Ver Demo</button>
+						<a href="#portfolio" class="btn-secondary"> Ver Proyectos </a>
+					</div>
+				</div>
+			</section>
+
+			<!-- Services Section -->
+			<section class="section" id="services">
+				<div class="container">
+					<h2 class="section-title">Nuestros Servicios</h2>
+					<div class="services-grid">
+						<div class="service-card">
+							<div class="service-icon">🎨</div>
+							<h3>Diseño UI/UX</h3>
+							<p>Interfaces modernas y experiencias de usuario excepcionales.</p>
+						</div>
+						<div class="service-card">
+							<div class="service-icon">💻</div>
+							<h3>Desarrollo Web</h3>
+							<p>Sitios web responsive con las últimas tecnologías.</p>
+						</div>
+						<div class="service-card">
+							<div class="service-icon">📱</div>
+							<h3>Apps Móviles</h3>
+							<p>Aplicaciones nativas y PWAs de alto rendimiento.</p>
+						</div>
+						<div class="service-card">
+							<div class="service-icon">🚀</div>
+							<h3>Optimización</h3>
+							<p>Performance y SEO para resultados medibles.</p>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<!-- Portfolio Section -->
+			<section class="section section-dark" id="portfolio">
+				<div class="container">
+					<h2 class="section-title">Portfolio Destacado</h2>
+					<div class="portfolio-grid">
+						<article class="portfolio-item">
+							<div class="portfolio-image">
+								<img
+									src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600"
+									alt="Dashboard Analytics" />
+							</div>
+							<div class="portfolio-content">
+								<span class="portfolio-tag">Dashboard</span>
+								<h3>Analytics Dashboard</h3>
+								<p>Plataforma de análisis de datos en tiempo real.</p>
+							</div>
+						</article>
+						<article class="portfolio-item">
+							<div class="portfolio-image">
+								<img src="https://images.unsplash.com/photo-1557821552-17105176677c?w=600" alt="E-commerce" />
+							</div>
+							<div class="portfolio-content">
+								<span class="portfolio-tag">E-commerce</span>
+								<h3>Fashion Store</h3>
+								<p>Tienda online con checkout optimizado.</p>
+							</div>
+						</article>
+						<article class="portfolio-item">
+							<div class="portfolio-image">
+								<img src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=600" alt="SaaS Platform" />
+							</div>
+							<div class="portfolio-content">
+								<span class="portfolio-tag">SaaS</span>
+								<h3>Project Manager</h3>
+								<p>Herramienta de gestión de proyectos colaborativa.</p>
+							</div>
+						</article>
+					</div>
+				</div>
+			</section>
+
+			<!-- About Section -->
+			<section class="section" id="about">
+				<div class="container">
+					<h2 class="section-title">Acerca de Nosotros</h2>
+					<div class="about-content">
+						<div class="about-text">
+							<p>Somos un equipo de desarrolladores apasionados por crear soluciones web modernas y escalables.</p>
+							<p>
+								Con más de 5 años de experiencia, hemos ayudado a más de 100 clientes a llevar sus ideas al mundo
+								digital.
+							</p>
+							<p>Nuestro enfoque combina diseño excepcional, código limpio y las mejores prácticas de la industria.</p>
+						</div>
+						<div class="stats-grid">
+							<div class="stat-card">
+								<div class="stat-number">100+</div>
+								<div class="stat-label">Proyectos</div>
+							</div>
+							<div class="stat-card">
+								<div class="stat-number">50+</div>
+								<div class="stat-label">Clientes</div>
+							</div>
+							<div class="stat-card">
+								<div class="stat-number">5+</div>
+								<div class="stat-label">Años</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<!-- Contact Section -->
+			<section class="section section-dark" id="contact">
+				<div class="container">
+					<h2 class="section-title">Contacto</h2>
+					<form class="contact-form">
+						<div class="form-row">
+							<div class="form-group">
+								<label for="name">Nombre</label>
+								<input type="text" id="name" name="name" required />
+							</div>
+							<div class="form-group">
+								<label for="email">Email</label>
+								<input type="email" id="email" name="email" required />
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="message">Mensaje</label>
+							<textarea id="message" name="message" rows="5" required></textarea>
+						</div>
+						<button type="submit" class="btn-primary">Enviar Mensaje</button>
+					</form>
+				</div>
+			</section>
+		</main>
+
+		<!-- ========================================
+       MODAL OVERLAY + MODAL
+       ======================================== -->
+		<div class="modal-overlay" id="modalOverlay">
+			<div class="modal" id="modal" role="dialog" aria-labelledby="modalTitle" aria-modal="true">
+				<!-- Modal Header -->
+				<div class="modal-header">
+					<h2 id="modalTitle">Solicita tu Demo Gratuita</h2>
+					<button class="modal-close" id="closeModal" aria-label="Cerrar modal">
+						<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+							<path d="M18 6L6 18M6 6l12 12" />
+						</svg>
+					</button>
+				</div>
+
+				<!-- Modal Body -->
+				<div class="modal-body">
+					<p class="modal-description">
+						Completa el formulario y te contactaremos en menos de 24 horas para agendar tu demo personalizada.
+					</p>
+
+					<form class="modal-form">
+						<div class="form-group">
+							<label for="modal-name">Nombre completo *</label>
+							<input type="text" id="modal-name" name="name" required />
+						</div>
+
+						<div class="form-group">
+							<label for="modal-email">Email *</label>
+							<input type="email" id="modal-email" name="email" required />
+						</div>
+
+						<div class="form-group">
+							<label for="modal-company">Empresa</label>
+							<input type="text" id="modal-company" name="company" />
+						</div>
+
+						<div class="form-group">
+							<label for="modal-phone">Teléfono</label>
+							<input type="tel" id="modal-phone" name="phone" />
+						</div>
+
+						<div class="form-group">
+							<label for="modal-service">Servicio de interés *</label>
+							<select id="modal-service" name="service" required>
+								<option value="">Selecciona una opción</option>
+								<option value="web">Desarrollo Web</option>
+								<option value="app">App Móvil</option>
+								<option value="design">Diseño UI/UX</option>
+								<option value="consulting">Consultoría</option>
+							</select>
+						</div>
+
+						<div class="form-group">
+							<label for="modal-message">Mensaje adicional</label>
+							<textarea id="modal-message" name="message" rows="3"></textarea>
+						</div>
+
+						<div class="modal-actions">
+							<button type="button" class="btn-secondary" id="cancelModal">Cancelar</button>
+							<button type="submit" class="btn-primary">Solicitar Demo</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+
+		<!-- ========================================
+       FLOATING ACTION BUTTON (Sticky)
+       ======================================== -->
+		<button class="fab" id="scrollToTop" aria-label="Scroll to top">
+			<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+				<path d="M12 19V5M5 12l7-7 7 7" />
+			</svg>
+		</button>
+	</body>
+</html>
