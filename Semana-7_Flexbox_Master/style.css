@@ -1,20 +1,87 @@
+/* Reset y Variables */
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+body {
+	font-family: system-ui, -apple-system, sans-serif;
+	line-height: 1.6;
+	color: oklch(78.111% 0.00551 248.266);
+
+	background-color: oklch(35.039% 0.00275 197.831);
+}
+
+/* NAVBAR */
 .navbar {
 	display: flex;
-	justify-content: space-between; /* Logo a la izq, links a la der */
+	justify-content: space-between;
 	align-items: center;
 	padding: 1rem 2rem;
-	background: oklch(20% 0.05 250);
+	background-color: oklch(25.039% 0.00275 197.831);
 }
 
 .nav-links {
 	display: flex;
-	gap: 2rem; /* ✅ Espaciado moderno entre links */
+	gap: clamp(1rem, 2vw, 3rem);
+}
+
+.nav-links li {
 	list-style: none;
 }
 
-.logo {
-	font-size: 1.5rem;
-	font-weight: bold;
-	color: oklch(90% 0.1 250);
+.nav-links a {
 	text-decoration: none;
+	color: oklch(78.111% 0.00551 248.266);
+	font-weight: 500;
+	font-size: clamp(1rem, 2vw, 1.5rem);
+	transition: color 0.3s ease;
+}
+
+.hero {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	min-height: 100vh;
+}
+
+.gallery {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	gap: 1rem;
+	padding: 2rem;
+}
+
+.card {
+	flex: 1 1 calc(33.333% - 2rem);
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: space-evenly;
+	background-color: oklch(45.039% 0.00275 197.831);
+	padding: 1rem;
+	border-radius: 8px;
+	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+	transition: transform 0.3s ease;
+}
+
+.card .btn {
+	align-self: flex-start;
+	background-color: oklch(65.039% 0.00275 197.831);
+	color: oklch(10.111% 0.00551 248.266);
+	padding: 0.5rem 1rem;
+	border: none;
+	border-radius: 4px;
+	cursor: pointer;
+	transition: background-color 0.3s ease;
+}
+
+.footer {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding: 1rem;
 }
