@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="es">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Ejemplo 3: Auto-fit Grid - Galería Responsive Automática</title>
+		<style>
+			* {
+				margin: 0;
+				padding: 0;
+				box-sizing: border-box;
+			}
+
+			body {
+				font-family: "Segoe UI", sans-serif;
+				background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+				padding: 2rem;
+				min-height: 100vh;
+			}
+
+			h1 {
+				text-align: center;
+				color: white;
+				margin-bottom: 1rem;
+				font-size: 2.5rem;
+			}
+
+			.subtitle {
+				text-align: center;
+				color: rgba(255, 255, 255, 0.9);
+				margin-bottom: 2rem;
+				font-size: 1.1rem;
+			}
+
+			/* 🎯 GRID CON AUTO-FIT - ¡Sin media queries! */
+			.auto-gallery {
+				display: grid;
+
+				/* 🔥 La magia: Se adapta automáticamente */
+				grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+
+				gap: 20px;
+				max-width: 1400px;
+				margin: 0 auto;
+			}
+
+			.card {
+				background: white;
+				border-radius: 12px;
+				overflow: hidden;
+				box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+				transition: transform 0.3s, box-shadow 0.3s;
+
+				/* Grid interno para el card */
+				display: grid;
+				grid-template-rows: 200px auto 1fr auto;
+			}
+
+			.card:hover {
+				transform: translateY(-8px);
+				box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
+			}
+
+			.card-image {
+				background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				font-size: 3rem;
+				color: white;
+			}
+
+			.card:nth-child(2n) .card-image {
+				background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+			}
+
+			.card:nth-child(3n) .card-image {
+				background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+			}
+
+			.card-title {
+				padding: 1rem;
+			}
+
+			.card-title h3 {
+				color: #333;
+				margin-bottom: 0.5rem;
+			}
+
+			.card-category {
+				display: inline-block;
+				background: #667eea;
+				color: white;
+				padding: 0.25rem 0.75rem;
+				border-radius: 20px;
+				font-size: 0.8rem;
+				font-weight: 600;
+			}
+
+			.card-description {
+				padding: 0 1rem 1rem;
+				color: #666;
+				line-height: 1.6;
+			}
+
+			.card-footer {
+				padding: 1rem;
+				border-top: 1px solid #eee;
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+				font-size: 0.85rem;
+				color: #999;
+			}
+
+			.card-footer button {
+				background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+				color: white;
+				border: none;
+				padding: 0.5rem 1.5rem;
+				border-radius: 20px;
+				cursor: pointer;
+				font-weight: 600;
+				transition: transform 0.2s;
+			}
+
+			.card-footer button:hover {
+				transform: scale(1.05);
+			}
+
+			/* Info box */
+			.info-box {
+				background: rgba(255, 255, 255, 0.95);
+				padding: 1.5rem;
+				border-radius: 12px;
+				margin: 0 auto 2rem;
+				max-width: 1400px;
+				box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+			}
+
+			.info-box h2 {
+				color: #667eea;
+				margin-bottom: 1rem;
+			}
+
+			.info-box code {
+				background: #f0f0f0;
+				padding: 3px 8px;
+				border-radius: 4px;
+				font-family: monospace;
+				color: #764ba2;
+				font-weight: bold;
+			}
+
+			.info-box .highlight {
+				background: #fffacd;
+				padding: 1rem;
+				border-left: 4px solid #667eea;
+				margin: 1rem 0;
+				border-radius: 4px;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="info-box">
+			<h2>🚀 Grid con Auto-fit - Responsive sin Media Queries</h2>
+			<p><strong>Código clave:</strong></p>
+			<pre style="background: #f0f0f0; padding: 1rem; border-radius: 4px; overflow-x: auto; margin: 1rem 0">
+grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        </pre
+			>
+			<div class="highlight">
+				<strong>🎯 ¿Qué hace esto?</strong>
+				<ul style="margin-top: 0.5rem; margin-left: 1.5rem">
+					<li><code>auto-fit</code>: Crea tantas columnas como quepan en el espacio disponible</li>
+					<li><code>minmax(250px, 1fr)</code>: Cada columna tiene mínimo 250px y máximo 1fr (flexible)</li>
+					<li><strong>Resultado:</strong> Grid que se adapta automáticamente al tamaño de la ventana</li>
+				</ul>
+			</div>
+			<p><strong>💡 Experimenta:</strong> Redimensiona la ventana del navegador para ver la magia en acción.</p>
+		</div>
+
+		<h1>📸 Galería Auto-Responsive</h1>
+		<p class="subtitle">Redimensiona la ventana para ver cómo se adapta automáticamente</p>
+
+		<div class="auto-gallery">
+			<div class="card">
+				<div class="card-image">📱</div>
+				<div class="card-title">
+					<span class="card-category">Mobile</span>
+					<h3>Desarrollo Móvil</h3>
+				</div>
+				<div class="card-description">Aprende a crear apps móviles nativas con React Native y Flutter.</div>
+				<div class="card-footer">
+					<span>15 Nov 2025</span>
+					<button>Leer más</button>
+				</div>
+			</div>
+
+			<div class="card">
+				<div class="card-image">💻</div>
+				<div class="card-title">
+					<span class="card-category">Web</span>
+					<h3>CSS Grid Master</h3>
+				</div>
+				<div class="card-description">Domina CSS Grid para crear layouts profesionales y responsivos.</div>
+				<div class="card-footer">
+					<span>16 Nov 2025</span>
+					<button>Leer más</button>
+				</div>
+			</div>
+
+			<div class="card">
+				<div class="card-image">🎨</div>
+				<div class="card-title">
+					<span class="card-category">Diseño</span>
+					<h3>UI/UX Moderno</h3>
+				</div>
+				<div class="card-description">Principios de diseño para crear interfaces atractivas y funcionales.</div>
+				<div class="card-footer">
+					<span>17 Nov 2025</span>
+					<button>Leer más</button>
+				</div>
+			</div>
+
+			<div class="card">
+				<div class="card-image">🚀</div>
+				<div class="card-title">
+					<span class="card-category">Performance</span>
+					<h3>Web Performance</h3>
+				</div>
+				<div class="card-description">Optimiza tu sitio web para velocidad y experiencia de usuario.</div>
+				<div class="card-footer">
+					<span>14 Nov 2025</span>
+					<button>Leer más</button>
+				</div>
+			</div>
+
+			<div class="card">
+				<div class="card-image">🔒</div>
+				<div class="card-title">
+					<span class="card-category">Seguridad</span>
+					<h3>Web Security</h3>
+				</div>
+				<div class="card-description">Protege tus aplicaciones web contra vulnerabilidades comunes.</div>
+				<div class="card-footer">
+					<span>13 Nov 2025</span>
+					<button>Leer más</button>
+				</div>
+			</div>
+
+			<div class="card">
+				<div class="card-image">📊</div>
+				<div class="card-title">
+					<span class="card-category">Data</span>
+					<h3>Data Visualization</h3>
+				</div>
+				<div class="card-description">Crea gráficos y visualizaciones de datos impactantes.</div>
+				<div class="card-footer">
+					<span>12 Nov 2025</span>
+					<button>Leer más</button>
+				</div>
+			</div>
+
+			<div class="card">
+				<div class="card-image">🤖</div>
+				<div class="card-title">
+					<span class="card-category">AI</span>
+					<h3>Machine Learning</h3>
+				</div>
+				<div class="card-description">Introducción práctica al aprendizaje automático para web.</div>
+				<div class="card-footer">
+					<span>11 Nov 2025</span>
+					<button>Leer más</button>
+				</div>
+			</div>
+
+			<div class="card">
+				<div class="card-image">🌐</div>
+				<div class="card-title">
+					<span class="card-category">API</span>
+					<h3>REST APIs</h3>
+				</div>
+				<div class="card-description">Diseña y consume APIs RESTful eficientes y escalables.</div>
+				<div class="card-footer">
+					<span>10 Nov 2025</span>
+					<button>Leer más</button>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

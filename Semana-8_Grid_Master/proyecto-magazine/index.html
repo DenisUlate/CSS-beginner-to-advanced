@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="es">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>TechNews - Magazine Layout con CSS Grid</title>
+		<link rel="stylesheet" href="style.css" />
+	</head>
+	<body>
+		<!-- Header -->
+		<header class="header">
+			<div class="logo">
+				<h1>TechNews</h1>
+			</div>
+			<nav class="nav">
+				<a href="#tech">Tecnología</a>
+				<a href="#design">Diseño</a>
+				<a href="#business">Negocios</a>
+				<a href="#science">Ciencia</a>
+			</nav>
+		</header>
+
+		<!-- Magazine Grid Layout -->
+		<main class="magazine-grid">
+			<!-- Featured Article (grande) -->
+			<article class="article featured">
+				<img
+					src="https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800&h=600&fit=crop"
+					alt="AI Technology" />
+				<div class="article-content">
+					<span class="category">Inteligencia Artificial</span>
+					<h2>El Futuro de la IA en 2025</h2>
+					<p>
+						Descubre cómo la inteligencia artificial está transformando industrias completas y creando nuevas
+						oportunidades.
+					</p>
+					<div class="meta">
+						<span class="author">Por María García</span>
+						<span class="date">17 Nov 2025</span>
+					</div>
+				</div>
+			</article>
+
+			<!-- Secondary Article (mediano vertical) -->
+			<article class="article secondary">
+				<img src="https://images.unsplash.com/photo-1633356122544-f134324a6cee?w=400&h=500&fit=crop" alt="Web Design" />
+				<div class="article-content">
+					<span class="category">Diseño Web</span>
+					<h3>CSS Grid: El Poder del Layout Moderno</h3>
+					<p>Aprende a dominar CSS Grid para crear diseños profesionales.</p>
+					<div class="meta">
+						<span class="author">Carlos Ruiz</span>
+						<span class="date">16 Nov 2025</span>
+					</div>
+				</div>
+			</article>
+
+			<!-- Horizontal Article -->
+			<article class="article horizontal">
+				<img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=300&h=200&fit=crop" alt="Space Tech" />
+				<div class="article-content">
+					<span class="category">Espacio</span>
+					<h4>Nuevo Telescopio Espacial</h4>
+					<p>La NASA revela imágenes nunca antes vistas del universo.</p>
+				</div>
+			</article>
+
+			<!-- Small Cards Grid -->
+			<article class="article small">
+				<img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=300&h=200&fit=crop" alt="Coding" />
+				<div class="article-content">
+					<span class="category">Desarrollo</span>
+					<h4>10 Tips para Clean Code</h4>
+				</div>
+			</article>
+
+			<article class="article small">
+				<img src="https://images.unsplash.com/photo-1563986768609-322da13575f3?w=300&h=200&fit=crop" alt="Startup" />
+				<div class="article-content">
+					<span class="category">Startups</span>
+					<h4>Funding en Tech 2025</h4>
+				</div>
+			</article>
+
+			<article class="article small">
+				<img src="https://images.unsplash.com/photo-1535223289827-42f1e9919769?w=300&h=200&fit=crop" alt="Mobile" />
+				<div class="article-content">
+					<span class="category">Mobile</span>
+					<h4>Apps Más Innovadoras</h4>
+				</div>
+			</article>
+
+			<article class="article small">
+				<img src="https://images.unsplash.com/photo-1518770660439-4636190af475?w=300&h=200&fit=crop" alt="Blockchain" />
+				<div class="article-content">
+					<span class="category">Blockchain</span>
+					<h4>Crypto Trends 2025</h4>
+				</div>
+			</article>
+
+			<!-- Wide Article -->
+			<article class="article wide">
+				<img
+					src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=900&h=300&fit=crop"
+					alt="Remote Work" />
+				<div class="article-content">
+					<span class="category">Trabajo Remoto</span>
+					<h3>El Futuro del Trabajo Híbrido</h3>
+					<p>
+						Cómo las empresas están redefiniendo la cultura laboral en la era post-pandemia. Nuevas tendencias y
+						herramientas.
+					</p>
+					<div class="meta">
+						<span class="author">Ana Martínez</span>
+						<span class="date">15 Nov 2025</span>
+					</div>
+				</div>
+			</article>
+
+			<!-- Sidebar Ad -->
+			<aside class="sidebar-ad">
+				<div class="ad-content">
+					<h4>🚀 Aprende Grid CSS</h4>
+					<p>Curso completo de CSS Grid desde cero hasta experto</p>
+					<button>Ver Curso</button>
+				</div>
+			</aside>
+		</main>
+
+		<!-- Footer -->
+		<footer class="footer">
+			<div class="footer-content">
+				<div class="footer-section">
+					<h4>Sobre TechNews</h4>
+					<p>Tu fuente de noticias tech más confiable.</p>
+				</div>
+				<div class="footer-section">
+					<h4>Categorías</h4>
+					<ul>
+						<li><a href="#">Tecnología</a></li>
+						<li><a href="#">Diseño</a></li>
+						<li><a href="#">Negocios</a></li>
+					</ul>
+				</div>
+				<div class="footer-section">
+					<h4>Newsletter</h4>
+					<input type="email" placeholder="tu@email.com" />
+					<button>Suscribirse</button>
+				</div>
+			</div>
+			<p class="copyright">© 2025 TechNews. Proyecto educativo CSS Grid.</p>
+		</footer>
+	</body>
+</html>

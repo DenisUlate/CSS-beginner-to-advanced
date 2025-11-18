@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="es">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Ejemplo 2: Grid Template Areas - Layout de Página</title>
+		<style>
+			* {
+				margin: 0;
+				padding: 0;
+				box-sizing: border-box;
+			}
+
+			body {
+				font-family: "Segoe UI", sans-serif;
+				background: #f5f5f5;
+			}
+
+			/* 🎯 GRID CON TEMPLATE AREAS */
+			.page-layout {
+				display: grid;
+
+				/* Define el layout visualmente con nombres */
+				grid-template-areas:
+					"header header header"
+					"sidebar main aside"
+					"footer footer footer";
+
+				/* Tamaño de las columnas */
+				grid-template-columns: 250px 1fr 250px;
+
+				/* Tamaño de las filas */
+				grid-template-rows: 80px 1fr 60px;
+
+				gap: 10px;
+				min-height: 100vh;
+				padding: 10px;
+			}
+
+			/* Asignar cada sección a su área */
+			.header {
+				grid-area: header;
+				background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+				color: white;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				font-size: 2rem;
+				font-weight: bold;
+				border-radius: 8px;
+			}
+
+			.sidebar {
+				grid-area: sidebar;
+				background: #f093fb;
+				color: white;
+				padding: 1.5rem;
+				border-radius: 8px;
+			}
+
+			.main {
+				grid-area: main;
+				background: white;
+				padding: 2rem;
+				border-radius: 8px;
+				box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+			}
+
+			.aside {
+				grid-area: aside;
+				background: #4facfe;
+				color: white;
+				padding: 1.5rem;
+				border-radius: 8px;
+			}
+
+			.footer {
+				grid-area: footer;
+				background: #43e97b;
+				color: white;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				border-radius: 8px;
+			}
+
+			/* Estilos de contenido */
+			.sidebar h3,
+			.aside h3,
+			.main h2 {
+				margin-bottom: 1rem;
+			}
+
+			.sidebar ul,
+			.aside ul {
+				list-style: none;
+			}
+
+			.sidebar li,
+			.aside li {
+				padding: 0.5rem 0;
+				border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+			}
+
+			.main p {
+				line-height: 1.6;
+				margin-bottom: 1rem;
+				color: #333;
+			}
+
+			/* 📱 RESPONSIVE - Reorganiza el layout */
+			@media (max-width: 1024px) {
+				.page-layout {
+					grid-template-areas:
+						"header header"
+						"main main"
+						"sidebar aside"
+						"footer footer";
+
+					grid-template-columns: 1fr 1fr;
+					grid-template-rows: 80px auto auto 60px;
+				}
+			}
+
+			@media (max-width: 768px) {
+				.page-layout {
+					grid-template-areas:
+						"header"
+						"main"
+						"sidebar"
+						"aside"
+						"footer";
+
+					grid-template-columns: 1fr;
+					grid-template-rows: auto;
+				}
+			}
+
+			/* Info box flotante */
+			.info-float {
+				position: fixed;
+				bottom: 20px;
+				right: 20px;
+				background: rgba(102, 126, 234, 0.95);
+				color: white;
+				padding: 1rem;
+				border-radius: 8px;
+				max-width: 300px;
+				box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+				z-index: 1000;
+			}
+
+			.info-float h4 {
+				margin-bottom: 0.5rem;
+			}
+
+			.info-float code {
+				background: rgba(255, 255, 255, 0.2);
+				padding: 2px 6px;
+				border-radius: 3px;
+				font-family: monospace;
+				font-size: 0.85rem;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="page-layout">
+			<header class="header">📰 TechBlog</header>
+
+			<nav class="sidebar">
+				<h3>📚 Navegación</h3>
+				<ul>
+					<li>🏠 Inicio</li>
+					<li>📝 Artículos</li>
+					<li>🎨 Tutoriales</li>
+					<li>💼 Proyectos</li>
+					<li>📧 Contacto</li>
+				</ul>
+			</nav>
+
+			<main class="main">
+				<h2>CSS Grid Template Areas</h2>
+				<p>
+					<strong>Grid Template Areas</strong> es una de las características más poderosas de CSS Grid. Te permite
+					definir el layout de tu página usando nombres visuales en lugar de números de línea.
+				</p>
+				<p>
+					Esto hace que tu código sea mucho más legible y fácil de mantener. Además, reorganizar el layout para
+					diferentes tamaños de pantalla se vuelve trivial: solo cambias la disposición de las áreas nombradas.
+				</p>
+				<h3>✅ Ventajas:</h3>
+				<ul>
+					<li>Visual e intuitivo</li>
+					<li>Fácil de reorganizar en responsive</li>
+					<li>Código más legible</li>
+					<li>Menos propenso a errores</li>
+				</ul>
+				<h3>📖 Ejemplo de código:</h3>
+				<pre style="background: #f0f0f0; padding: 1rem; border-radius: 4px; overflow-x: auto">
+grid-template-areas:
+    "header header header"
+    "sidebar main aside"
+    "footer footer footer";
+            </pre
+				>
+			</main>
+
+			<aside class="aside">
+				<h3>🔥 Trending</h3>
+				<ul>
+					<li>CSS Grid 2025</li>
+					<li>Flexbox vs Grid</li>
+					<li>Responsive Design</li>
+					<li>Web Performance</li>
+					<li>Accessibility</li>
+				</ul>
+			</aside>
+
+			<footer class="footer">© 2025 TechBlog - Ejemplo CSS Grid Template Areas</footer>
+		</div>
+
+		<div class="info-float">
+			<h4>🎯 Intenta esto:</h4>
+			<p style="font-size: 0.9rem; margin-bottom: 0.5rem">
+				Redimensiona la ventana del navegador para ver cómo se reorganiza el layout automáticamente.
+			</p>
+			<p style="font-size: 0.85rem; opacity: 0.9">
+				<code>Desktop → Tablet → Mobile</code>
+			</p>
+		</div>
+	</body>
+</html>

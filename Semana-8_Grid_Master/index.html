@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="es">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Dashboard con Subgrid</title>
+		<style>
+			* {
+				margin: 0;
+				padding: 0;
+				box-sizing: border-box;
+			}
+
+			body {
+				font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+				background: #1a1a2e;
+				color: white;
+				padding: 20px;
+			}
+
+			/* 🎯 Grid Principal del Dashboard */
+			.parent-grid {
+				display: grid;
+				grid-template-columns: repeat(4, 1fr);
+				gap: 20px;
+				max-width: 1400px;
+				margin: 0 auto;
+			}
+
+			/* 🆕 Card con Subgrid para alinear contenido interno */
+			.nested-item {
+				display: grid;
+				grid-column: 1 / 4; /* Span 3 columnas */
+
+				/* Hereda las 3 columnas que ocupa del padre */
+				grid-template-columns: subgrid;
+				grid-template-rows: auto 1fr auto; /* Header, Body, Footer */
+
+				gap: 10px;
+				background: linear-gradient(135deg, #2d3561 0%, #1f2544 100%);
+				border-radius: 12px;
+				padding: 20px;
+				box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+			}
+
+			/* Header del card (ocupa todas las columnas del subgrid) */
+			.card-header {
+				grid-column: 1 / -1;
+				padding-bottom: 10px;
+				border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+			}
+
+			.card-header h2 {
+				font-size: 20px;
+				color: #00d4ff;
+			}
+
+			/* Métricas alineadas con las columnas del subgrid */
+			.metric {
+				background: rgba(0, 212, 255, 0.1);
+				padding: 20px;
+				border-radius: 8px;
+				border: 1px solid rgba(0, 212, 255, 0.3);
+				text-align: center;
+			}
+
+			.metric-value {
+				font-size: 32px;
+				font-weight: bold;
+				color: #00d4ff;
+				margin: 10px 0;
+			}
+
+			.metric-label {
+				font-size: 12px;
+				text-transform: uppercase;
+				letter-spacing: 1px;
+				color: rgba(255, 255, 255, 0.6);
+			}
+
+			/* Footer del card */
+			.card-footer {
+				grid-column: 1 / -1;
+				padding-top: 10px;
+				border-top: 2px solid rgba(255, 255, 255, 0.1);
+				text-align: center;
+				color: rgba(255, 255, 255, 0.5);
+				font-size: 14px;
+			}
+
+			/* Sidebar (item normal) */
+			.sidebar {
+				background: linear-gradient(135deg, #16213e 0%, #0f3460 100%);
+				padding: 20px;
+				border-radius: 12px;
+				box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+			}
+
+			.sidebar h3 {
+				color: #00d4ff;
+				margin-bottom: 15px;
+			}
+
+			.sidebar ul {
+				list-style: none;
+			}
+
+			.sidebar li {
+				padding: 10px;
+				margin: 5px 0;
+				background: rgba(255, 255, 255, 0.05);
+				border-radius: 6px;
+				cursor: pointer;
+				transition: background 0.3s;
+			}
+
+			.sidebar li:hover {
+				background: rgba(0, 212, 255, 0.2);
+			}
+		</style>
+	</head>
+	<body>
+		<div class="parent-grid">
+			<!-- 🆕 Card Principal con Subgrid -->
+			<article class="nested-item">
+				<header class="card-header">
+					<h2>📊 Métricas del Mes</h2>
+				</header>
+
+				<!-- Estas 3 métricas se alinean con las columnas heredadas -->
+				<div class="metric">
+					<div class="metric-label">Usuarios</div>
+					<div class="metric-value">12.5K</div>
+					<div class="metric-label">+15% ↑</div>
+				</div>
+
+				<div class="metric">
+					<div class="metric-label">Ingresos</div>
+					<div class="metric-value">$45K</div>
+					<div class="metric-label">+23% ↑</div>
+				</div>
+
+				<div class="metric">
+					<div class="metric-label">Conversión</div>
+					<div class="metric-value">3.2%</div>
+					<div class="metric-label">+8% ↑</div>
+				</div>
+
+				<footer class="card-footer">Última actualización: Hace 5 minutos</footer>
+			</article>
+
+			<!-- Sidebar Normal -->
+			<aside class="sidebar">
+				<h3>🔧 Acciones</h3>
+				<ul>
+					<li>📈 Ver Reportes</li>
+					<li>⚙️ Configuración</li>
+					<li>📧 Notificaciones</li>
+					<li>👤 Mi Perfil</li>
+				</ul>
+			</aside>
+		</div>
+	</body>
+</html>
