@@ -3,7 +3,7 @@
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>Dashboard con Subgrid</title>
+		<title>Holy Grail Layout con Grid</title>
 		<style>
 			* {
 				margin: 0;
@@ -12,153 +12,141 @@
 			}
 
 			body {
-				font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-				background: #1a1a2e;
+				font-family: system-ui, -apple-system, sans-serif;
+				color: #333;
+			}
+
+			/* 🏆 Holy Grail Layout */
+			.holy-grail {
+				display: grid;
+				grid-template-areas:
+					"header header header"
+					"nav main aside"
+					"footer footer footer";
+
+				/* Columnas: Nav fija, Main flexible, Aside fijo */
+				grid-template-columns: 200px 1fr 200px;
+
+				/* Filas: Header auto, Main ocupa el resto, Footer auto */
+				grid-template-rows: auto 1fr auto;
+
+				/* Ocupar toda la altura de la pantalla */
+				min-height: 100vh;
+			}
+
+			/* Asignación de áreas */
+			header {
+				grid-area: header;
+				background: #2d3436;
 				color: white;
-				padding: 20px;
-			}
-
-			/* 🎯 Grid Principal del Dashboard */
-			.parent-grid {
-				display: grid;
-				grid-template-columns: repeat(4, 1fr);
-				gap: 20px;
-				max-width: 1400px;
-				margin: 0 auto;
-			}
-
-			/* 🆕 Card con Subgrid para alinear contenido interno */
-			.nested-item {
-				display: grid;
-				grid-column: 1 / 4; /* Span 3 columnas */
-
-				/* Hereda las 3 columnas que ocupa del padre */
-				grid-template-columns: subgrid;
-				grid-template-rows: auto 1fr auto; /* Header, Body, Footer */
-
-				gap: 10px;
-				background: linear-gradient(135deg, #2d3561 0%, #1f2544 100%);
-				border-radius: 12px;
-				padding: 20px;
-				box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-			}
-
-			/* Header del card (ocupa todas las columnas del subgrid) */
-			.card-header {
-				grid-column: 1 / -1;
-				padding-bottom: 10px;
-				border-bottom: 2px solid rgba(255, 255, 255, 0.1);
-			}
-
-			.card-header h2 {
-				font-size: 20px;
-				color: #00d4ff;
-			}
-
-			/* Métricas alineadas con las columnas del subgrid */
-			.metric {
-				background: rgba(0, 212, 255, 0.1);
-				padding: 20px;
-				border-radius: 8px;
-				border: 1px solid rgba(0, 212, 255, 0.3);
+				padding: 1rem;
 				text-align: center;
 			}
 
-			.metric-value {
-				font-size: 32px;
-				font-weight: bold;
-				color: #00d4ff;
-				margin: 10px 0;
+			nav {
+				grid-area: nav;
+				background: #dfe6e9;
+				padding: 1rem;
 			}
 
-			.metric-label {
-				font-size: 12px;
-				text-transform: uppercase;
-				letter-spacing: 1px;
-				color: rgba(255, 255, 255, 0.6);
+			main {
+				grid-area: main;
+				background: #f5f6fa;
+				padding: 2rem;
 			}
 
-			/* Footer del card */
-			.card-footer {
-				grid-column: 1 / -1;
-				padding-top: 10px;
-				border-top: 2px solid rgba(255, 255, 255, 0.1);
+			aside {
+				grid-area: aside;
+				background: #dfe6e9;
+				padding: 1rem;
+			}
+
+			footer {
+				grid-area: footer;
+				background: #2d3436;
+				color: white;
+				padding: 1rem;
 				text-align: center;
-				color: rgba(255, 255, 255, 0.5);
-				font-size: 14px;
 			}
 
-			/* Sidebar (item normal) */
-			.sidebar {
-				background: linear-gradient(135deg, #16213e 0%, #0f3460 100%);
-				padding: 20px;
-				border-radius: 12px;
-				box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+			/* Estilos decorativos */
+			h1,
+			h2 {
+				margin-bottom: 1rem;
 			}
-
-			.sidebar h3 {
-				color: #00d4ff;
-				margin-bottom: 15px;
+			p {
+				margin-bottom: 1rem;
+				line-height: 1.6;
 			}
-
-			.sidebar ul {
+			ul {
 				list-style: none;
 			}
-
-			.sidebar li {
-				padding: 10px;
-				margin: 5px 0;
-				background: rgba(255, 255, 255, 0.05);
-				border-radius: 6px;
-				cursor: pointer;
-				transition: background 0.3s;
+			li {
+				margin-bottom: 0.5rem;
+			}
+			a {
+				text-decoration: none;
+				color: #0984e3;
+				font-weight: bold;
 			}
 
-			.sidebar li:hover {
-				background: rgba(0, 212, 255, 0.2);
+			/* Responsive: Stack en móviles */
+			@media (max-width: 768px) {
+				.holy-grail {
+					grid-template-areas:
+						"header"
+						"nav"
+						"main"
+						"aside"
+						"footer";
+					grid-template-columns: 1fr;
+					grid-template-rows: auto;
+				}
 			}
 		</style>
 	</head>
 	<body>
-		<div class="parent-grid">
-			<!-- 🆕 Card Principal con Subgrid -->
-			<article class="nested-item">
-				<header class="card-header">
-					<h2>📊 Métricas del Mes</h2>
-				</header>
+		<div class="holy-grail">
+			<header>
+				<h1>🏆 Header</h1>
+			</header>
 
-				<!-- Estas 3 métricas se alinean con las columnas heredadas -->
-				<div class="metric">
-					<div class="metric-label">Usuarios</div>
-					<div class="metric-value">12.5K</div>
-					<div class="metric-label">+15% ↑</div>
-				</div>
-
-				<div class="metric">
-					<div class="metric-label">Ingresos</div>
-					<div class="metric-value">$45K</div>
-					<div class="metric-label">+23% ↑</div>
-				</div>
-
-				<div class="metric">
-					<div class="metric-label">Conversión</div>
-					<div class="metric-value">3.2%</div>
-					<div class="metric-label">+8% ↑</div>
-				</div>
-
-				<footer class="card-footer">Última actualización: Hace 5 minutos</footer>
-			</article>
-
-			<!-- Sidebar Normal -->
-			<aside class="sidebar">
-				<h3>🔧 Acciones</h3>
+			<nav>
+				<h2>Navegación</h2>
 				<ul>
-					<li>📈 Ver Reportes</li>
-					<li>⚙️ Configuración</li>
-					<li>📧 Notificaciones</li>
-					<li>👤 Mi Perfil</li>
+					<li><a href="#">Inicio</a></li>
+					<li><a href="#">Artículos</a></li>
+					<li><a href="#">Productos</a></li>
+					<li><a href="#">Contacto</a></li>
 				</ul>
+			</nav>
+
+			<main>
+				<h2>Contenido Principal</h2>
+				<p>
+					Este es el patrón "Holy Grail" implementado con CSS Grid. Es uno de los layouts más clásicos y útiles en
+					diseño web.
+				</p>
+				<p>
+					La estructura se define visualmente usando <code>grid-template-areas</code>, lo que hace que el código sea muy
+					fácil de leer y mantener.
+				</p>
+				<p>
+					El contenido central (main) se expande para ocupar todo el espacio disponible gracias a <code>1fr</code> en la
+					definición de columnas y filas.
+				</p>
+			</main>
+
+			<aside>
+				<h2>Barra Lateral</h2>
+				<p>Publicidad</p>
+				<p>Links relacionados</p>
+				<p>Noticias recientes</p>
 			</aside>
+
+			<footer>
+				<p>🦶 Footer - © 2025</p>
+			</footer>
 		</div>
 	</body>
 </html>
